@@ -1,19 +1,93 @@
 ﻿# PPS - Autotool Hinweise
-# Aufgabe 41-1 (Hanoi)
 
-# Aufgabe 42-1 (Blockkommentar)
+## Aufgabe 42-1 (Blockkommentar)
 
-# Aufgabe 42-2 (ungerade/regulärer Ausdruck)
-Vorlesung: [Skript]()
+**Hinweis:**
+- siehe regulärer Ausdruck
+- Substition der eigentlichen Wörter mit Buchstaben
+
+## Aufgabe 42-1 (regulärer Ausdruck)
+Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(25)), [Grundlagen](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(21)), [weitere Literatur](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(27))
+
 Lösung: nicht vorhanden
 
-# Aufgabe 42-3 (Formel -> Regexp)
+**Hinweise:**
+- siehe autotool-test
+- `a*b` bzw. `ab` &rarr; Verkettung &rarr; a und dann b
+- `a+b` &rarr; Vereinigung &rarr; a oder b
+- `^*` &rarr; Hülle &rarr; beliebig oft oder gar nicht
 
-# Aufgabe 43-1 (eindeutige CFG)
-Vorlesung: [Skript1](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(38)), [Skript2](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(42)), [Skript3](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(47))
+## Aufgabe 42-3 (Formel -> Regexp)
+
+siehe Reguläre Ausdrücke 👆
+
+Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(23))
+
+Beispiel:
+
+`forall p : ((a (p) => exists q : (((p < q) && b (q)))))`
+
+&rarr; Für alle Stellen p gilt: Wenn an der Stelle ein a steht dann existiert eine Stelle q, für die gilt: die Stelle p ist vor (kleiner) der Stelle q und an der Stelle q steht ein b. 
+
 Lösung:
-# Aufgabe 43-2 (CFG a ungleich b)
+```
+((a^*c^*)^*bc^*)^*
+```
+
+**Prädikatenlogik**
+
+- Implikation
+    - Implikation &rarr; x => y &rarr; wenn x, dann y
+    - Wenn x falsch ist, ist Implikation immer wahr
+    - nur wenn x wahr ist, dann hängt Implikation von y ab
+- Konjuktion
+    - Und &rarr; x &and; y
+- Disjunktion
+    - Oder &rarr; x &or; y
+
+
+**Hinweise:**
+- es gibt Buchstaben innerhalb des Alphabetes &rarr; können in Wort vorkommen
+- es gibt Buchstaben nicht im Alphabet &rarr; Positionen im Wort
+- a (p) meint dabei eine **Position p** im Wort mit dem Buchstaben a
+- b (q) meint dabei eine **Position q** im Wort mit dem Buchstaben b
+- p < q &rarr; der Buchstabe a kommt vor dem Buchstaben b
+
+
+## Aufgabe 43-1 (eindeutige CFG)
 Vorlesung: [Skript1](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(38)), [Skript2](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(42)), [Skript3](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(47))
+
+Lösung:
+```java
+Grammatik
+    { terminale = mkSet    "ab"
+    , variablen = mkSet    "SAB"
+    , start = 'S'
+    , regeln = mkSet
+                   [ ( "S", "")
+                   , ( "S", "aBS")
+                   , ( "S", "bAS")
+                   , ( "A", "a")
+                   , ( "A", "bAA")
+                   , ( "B", "b")
+                   , ( "B", "aBB")
+                   ]
+    }
+```
+
+**Grammatiken:**
+- Terminal-Alphabet &Sigma;
+- Variablen-Alphabet V
+- Startsymbol S &isin; V
+- Regelmenge R &SubsetEqual; (&Sigma; &cup; V)* x (&Sigma; &cup; V)*
+
+**Eindeutigkeit:**
+- es existiert nur ein Ableitungsbaum
+- rand ist die Folge aller Blatt-Markierungen (von links nach rechts) &rarr; der Satz
+
+## Aufgabe 43-2 (CFG a ungleich b)
+Vorlesung: [Skript1](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(38)), [Skript2](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(42)), [Skript3](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(47))
+
 Lösung:
 ```java
 Grammatik
@@ -45,7 +119,7 @@ Vorgehensweise:
 
 
 
-# Aufgabe 47-1 (Nebenwirkungen)
+## Aufgabe 47-1 (Nebenwirkungen)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(139))
 Lösung: 
 ``` java
@@ -61,11 +135,12 @@ Vorgehensweise:
 	 5. Anfangsbelegungen anpassen
 
 **Hinweis:**
+- Siehe autotool-test (Skript zum automatischen Lösen)
 - [JavaScript-Online-Editor](https://replit.com/languages/nodejs)
 - [Java-Online-Editor](https://www.mycompiler.io/new/java)
 
 
-# Aufgabe 49-1 (While -> Goto)
+## Aufgabe 49-1 (While -> Goto)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(182))
 Lösung: 
 ```c
@@ -110,7 +185,7 @@ end: 		skip;
 ```
 - wichtig sind die umschießenden Klammern ( **{ }** )
 
-# Aufgabe 49-2 (Goto -> While)
+## Aufgabe 49-2 (Goto -> While)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(182))
 Lösung:
 ```javascript
@@ -145,7 +220,7 @@ end: 		skip;
 - Steuerung der while-Schleife mithilfe von **Variablen** &rarr; i := true
 - Keine Variablen zusätzlich verwenden wenn diese nicht benötigt werden &rarr; Fehler
 - Wichtig sind die umschließenden Klammern ( **{ }** )
-# Aufgabe 51-2 (denotationale Semantik)
+## Aufgabe 51-2 (denotationale Semantik)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(193)), [weiterführende Literatur](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(192))
 Lösung:
 - keine Lösung gefunden
@@ -158,7 +233,7 @@ Herangehensweise:
 **Hinweis:**
 - Vermutlich nicht prüfungsrelevant!
 
-# Aufgabe 53-1 (Frames)
+## Aufgabe 53-1 (Frames)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(210))
 Lösung:
 ```javascript
@@ -192,7 +267,7 @@ Vorgehensweise:
 - Funktionen können Parameter haben
 - zurückgegebene Funktion kann beispielsweise so aufgrufen werden: `f()()`
 
-# Aufgabe 54-1 (Überladung auflösen)
+## Aufgabe 54-1 (Überladung auflösen)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(235)), [weiterführende Literatur](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(233))
 Lösung:
 ```javascript
@@ -256,7 +331,7 @@ Vorgehensweise:
 	-  Distanz für dritten Parameter &rarr; -1 + -1 + -1 &rarr; **-3**
 	-  Gesamtdistanz &rarr; -2 + 0 + -3 &rarr; **-5**
 
-# Aufgabe 55-1 (Polymorphie)
+## Aufgabe 55-1 (Polymorphie)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(245))
 
 Lösung:
