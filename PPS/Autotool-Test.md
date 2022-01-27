@@ -1,6 +1,6 @@
 ﻿# Testdateien und Testfälle für Online-Compiler
 
-## Reguläre Ausdrücke (Regexp)
+# Reguläre Ausdrücke (Regexp)
 
 Tools: [Regex101d](https://regex101.com/)
 
@@ -14,7 +14,7 @@ Tools: [Regex101d](https://regex101.com/)
     - `(b^*(ab^*b)^*b^*)^*` &rarr; autotool
     -  `(?:b*(?:ab*a)*b*)*` &rarr; regex101
 
-## Kontextfreie Grammatiken
+# Kontextfreie Grammatiken
 
 Tools: [Tool](https://web.stanford.edu/class/archive/cs/cs103/cs103.1156/tools/cfg/)
 
@@ -23,7 +23,7 @@ Tools: [Tool](https://web.stanford.edu/class/archive/cs/cs103/cs103.1156/tools/c
 Visualisierungstools: [Tool1](https://pythontutor.com/visualize.html#mode=display), [Tool2](http://latentflip.com/loupe)
 
 
-## Nebenwirkungen
+# Nebenwirkungen
 Benutze das JS-Programm _sideeffects.js_ und passe die Eingabeparameter entsprechend an.
 
 Source-Code: [Code](https://stackblitz.com/edit/node-t5f4ok)
@@ -33,7 +33,7 @@ Source-Code: [Code](https://stackblitz.com/edit/node-t5f4ok)
 - Funkitoniert nur lokal
 - Bei mehreren Ausgaben darauf achten, dass das resultierende Array keine NaN´s oder objekte enthält!
 
-## Überladung
+# Überladung
 Online-Compiler: [Java-Compiler](https://www.mycompiler.io/new/java)
 Testdatei:
 ```java

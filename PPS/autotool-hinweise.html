@@ -1,0 +1,427 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>autotool-hinweise.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#pps---autotool-hinweise">PPS - Autotool Hinweise</a>
+<ul>
+<li><a href="#aufgabe-42-1-blockkommentar">Aufgabe 42-1 (Blockkommentar)</a></li>
+<li><a href="#aufgabe-42-1-regulärer-ausdruck">Aufgabe 42-1 (regulärer Ausdruck)</a></li>
+<li><a href="#aufgabe-42-3-formel---regexp">Aufgabe 42-3 (Formel -> Regexp)</a></li>
+<li><a href="#aufgabe-43-1-eindeutige-cfg">Aufgabe 43-1 (eindeutige CFG)</a></li>
+<li><a href="#aufgabe-43-2-cfg-a-ungleich-b">Aufgabe 43-2 (CFG a ungleich b)</a></li>
+<li><a href="#aufgabe-47-1-nebenwirkungen">Aufgabe 47-1 (Nebenwirkungen)</a></li>
+<li><a href="#aufgabe-49-1-while---goto">Aufgabe 49-1 (While -> Goto)</a></li>
+<li><a href="#aufgabe-49-2-goto---while">Aufgabe 49-2 (Goto -> While)</a></li>
+<li><a href="#aufgabe-51-2-denotationale-semantik">Aufgabe 51-2 (denotationale Semantik)</a></li>
+<li><a href="#aufgabe-53-1-frames">Aufgabe 53-1 (Frames)</a></li>
+<li><a href="#aufgabe-54-1-überladung-auflösen">Aufgabe 54-1 (Überladung auflösen)</a></li>
+<li><a href="#aufgabe-55-1-polymorphie">Aufgabe 55-1 (Polymorphie)</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="pps---autotool-hinweise">PPS - Autotool Hinweise</h1>
+<h2 id="aufgabe-42-1-blockkommentar">Aufgabe 42-1 (Blockkommentar)</h2>
+<p><strong>Hinweis:</strong></p>
+<ul>
+<li>siehe regulärer Ausdruck</li>
+<li>Substition der eigentlichen Wörter mit Buchstaben</li>
+</ul>
+<h2 id="aufgabe-42-1-regulärer-ausdruck">Aufgabe 42-1 (regulärer Ausdruck)</h2>
+<p>Vorlesung: <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(25)">Skript</a>, <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(21)">Grundlagen</a>, <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(27)">weitere Literatur</a></p>
+<p>Lösung:</p>
+<pre><code>ab(a+c)^*b^*(c(a+c)^*b^*)^*ba
+</code></pre>
+<p><strong>Hinweise:</strong></p>
+<ul>
+<li>siehe autotool-test</li>
+<li><code>a*b</code> bzw. <code>ab</code> → Verkettung → a und dann b</li>
+<li><code>a+b</code> → Vereinigung → a oder b</li>
+<li><code>^*</code> → Hülle → beliebig oft oder gar nicht</li>
+</ul>
+<h2 id="aufgabe-42-3-formel---regexp">Aufgabe 42-3 (Formel -&gt; Regexp)</h2>
+<p>siehe Reguläre Ausdrücke 👆</p>
+<p>Vorlesung: <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(23)">Skript</a></p>
+<p>Beispiel:</p>
+<p><code>forall p : ((a (p) =&gt; exists q : (((p &lt; q) &amp;&amp; b (q)))))</code></p>
+<p>→ Für alle Stellen p gilt: Wenn an der Stelle ein a steht dann existiert eine Stelle q, für die gilt: die Stelle p ist vor (kleiner) der Stelle q und an der Stelle q steht ein b.</p>
+<p>Lösung:</p>
+<pre><code>((a^*c^*)^*bc^*)^*
+</code></pre>
+<p><strong>Prädikatenlogik</strong></p>
+<ul>
+<li>Implikation
+<ul>
+<li>Implikation → x =&gt; y → wenn x, dann y</li>
+<li>Wenn x falsch ist, ist Implikation immer wahr</li>
+<li>nur wenn x wahr ist, dann hängt Implikation von y ab</li>
+</ul>
+</li>
+<li>Konjuktion
+<ul>
+<li>Und → x ∧ y</li>
+</ul>
+</li>
+<li>Disjunktion
+<ul>
+<li>Oder → x ∨ y</li>
+</ul>
+</li>
+</ul>
+<p><strong>Hinweise:</strong></p>
+<ul>
+<li>es gibt Buchstaben innerhalb des Alphabetes → können in Wort vorkommen</li>
+<li>es gibt Buchstaben nicht im Alphabet → Positionen im Wort</li>
+<li>a § meint dabei eine <strong>Position p</strong> im Wort mit dem Buchstaben a</li>
+<li>b (q) meint dabei eine <strong>Position q</strong> im Wort mit dem Buchstaben b</li>
+<li>p &lt; q → der Buchstabe a kommt vor dem Buchstaben b</li>
+</ul>
+<h2 id="aufgabe-43-1-eindeutige-cfg">Aufgabe 43-1 (eindeutige CFG)</h2>
+<p>Vorlesung: <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(38)">Skript1</a>, <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(42)">Skript2</a>, <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(47)">Skript3</a></p>
+<p>Lösung:</p>
+<pre class=" language-java"><code class="prism  language-java">Grammatik
+    <span class="token punctuation">{</span> terminale <span class="token operator">=</span> mkSet    <span class="token string">"ab"</span>
+    <span class="token punctuation">,</span> variablen <span class="token operator">=</span> mkSet    <span class="token string">"SAB"</span>
+    <span class="token punctuation">,</span> start <span class="token operator">=</span> <span class="token string">'S'</span>
+    <span class="token punctuation">,</span> regeln <span class="token operator">=</span> mkSet
+                   <span class="token punctuation">[</span> <span class="token punctuation">(</span> <span class="token string">"S"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"S"</span><span class="token punctuation">,</span> <span class="token string">"aBS"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"S"</span><span class="token punctuation">,</span> <span class="token string">"bAS"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token string">"bAA"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"B"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"B"</span><span class="token punctuation">,</span> <span class="token string">"aBB"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<p><strong>Grammatiken:</strong></p>
+<ul>
+<li>Terminal-Alphabet Σ</li>
+<li>Variablen-Alphabet V</li>
+<li>Startsymbol S ∈ V</li>
+<li>Regelmenge R ⊆ (Σ ∪ V)* x (Σ ∪ V)*</li>
+</ul>
+<p><strong>Eindeutigkeit:</strong></p>
+<ul>
+<li>es existiert nur ein Ableitungsbaum</li>
+<li>rand ist die Folge aller Blatt-Markierungen (von links nach rechts) → der Satz</li>
+</ul>
+<h2 id="aufgabe-43-2-cfg-a-ungleich-b">Aufgabe 43-2 (CFG a ungleich b)</h2>
+<p>Vorlesung: <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(38)">Skript1</a>, <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(42)">Skript2</a>, <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(47)">Skript3</a></p>
+<p>Lösung:</p>
+<pre class=" language-java"><code class="prism  language-java">Grammatik
+    <span class="token punctuation">{</span> terminale <span class="token operator">=</span> mkSet    <span class="token string">"ab"</span>
+    <span class="token punctuation">,</span> variablen <span class="token operator">=</span> mkSet    <span class="token string">"SPQXAB"</span>
+    <span class="token punctuation">,</span> start <span class="token operator">=</span> <span class="token string">'S'</span>
+    <span class="token punctuation">,</span> regeln <span class="token operator">=</span> mkSet
+                   <span class="token punctuation">[</span>
+                   <span class="token punctuation">(</span> <span class="token string">"S"</span><span class="token punctuation">,</span> <span class="token string">"P"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"S"</span><span class="token punctuation">,</span> <span class="token string">"Q"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"P"</span><span class="token punctuation">,</span> <span class="token string">"XAX"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"P"</span><span class="token punctuation">,</span> <span class="token string">"PP"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"Q"</span><span class="token punctuation">,</span> <span class="token string">"XBX"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"Q"</span><span class="token punctuation">,</span> <span class="token string">"QQ"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"X"</span><span class="token punctuation">,</span> <span class="token string">"aXb"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"X"</span><span class="token punctuation">,</span> <span class="token string">"bXa"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"X"</span><span class="token punctuation">,</span> <span class="token string">"XX"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"X"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token string">"aA"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"B"</span><span class="token punctuation">,</span> <span class="token string">"bB"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token string">"B"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">]</span> 
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>Vorgehensweise:</p>
+<ol>
+<li><em>start</em></li>
+</ol>
+<h2 id="aufgabe-47-1-nebenwirkungen">Aufgabe 47-1 (Nebenwirkungen)</h2>
+<p>Vorlesung: <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(139)">Skript</a><br>
+Lösung:</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">5</span> <span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> b <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span> <span class="token punctuation">;</span>
+</code></pre>
+<p>Vorgehensweise:</p>
+<ol>
+<li>Anweisungen kopieren und Online-Compiler einfügen</li>
+<li>Funktionsfähiges Programm erstellen</li>
+<li>Variablen ausgeben</li>
+<li>Verstehen oder Ausprobieren
+<ol start="5">
+<li>Anfangsbelegungen anpassen</li>
+</ol>
+</li>
+</ol>
+<p><strong>Hinweis:</strong></p>
+<ul>
+<li>Siehe autotool-test (Skript zum automatischen Lösen)</li>
+<li><a href="https://replit.com/languages/nodejs">JavaScript-Online-Editor</a></li>
+<li><a href="https://www.mycompiler.io/new/java">Java-Online-Editor</a></li>
+</ul>
+<h2 id="aufgabe-49-1-while---goto">Aufgabe 49-1 (While -&gt; Goto)</h2>
+<p>Vorlesung: <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(182)">Skript</a><br>
+Lösung:</p>
+<pre class=" language-c"><code class="prism  language-c"><span class="token punctuation">{</span>
+foo<span class="token punctuation">:</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>a<span class="token punctuation">)</span>
+        <span class="token keyword">goto</span> end<span class="token punctuation">;</span>
+    <span class="token keyword">goto</span> bar<span class="token punctuation">;</span>
+
+bar<span class="token punctuation">:</span> 
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>b<span class="token punctuation">)</span>
+        <span class="token keyword">goto</span> foo<span class="token punctuation">;</span>
+    <span class="token keyword">goto</span> barInner<span class="token punctuation">;</span>
+
+barInner<span class="token punctuation">:</span> 
+    p<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+        <span class="token keyword">goto</span> foo<span class="token punctuation">;</span>
+    q<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span> 
+        <span class="token keyword">goto</span> foo<span class="token punctuation">;</span>
+    r<span class="token punctuation">;</span>
+    <span class="token keyword">goto</span> bar<span class="token punctuation">;</span>
+
+end <span class="token punctuation">:</span> skip<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Vorgehensweise:</p>
+<ol>
+<li>While-Schleifen identifizieren</li>
+<li>Programmablauf verstehen</li>
+<li>äußerste while-Schleife umwandeln</li>
+<li>Im Schleifenkörper Umwandlungen machen, falls möglich</li>
+</ol>
+<p><strong>Hinweis:</strong></p>
+<ul>
+<li>Umwandlungssyntax → <code>while(B) A</code> →</li>
+</ul>
+<pre><code>start: 	if (!B) goto end;
+				A;
+				goto start;
+end: 		skip;
+</code></pre>
+<ul>
+<li>wichtig sind die umschießenden Klammern ( <strong>{ }</strong> )</li>
+</ul>
+<h2 id="aufgabe-49-2-goto---while">Aufgabe 49-2 (Goto -&gt; While)</h2>
+<p>Vorlesung: <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(182)">Skript</a><br>
+Lösung:</p>
+<pre class=" language-javascript"><code class="prism  language-javascript"><span class="token punctuation">{</span>
+    i <span class="token punctuation">:</span><span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>b <span class="token operator">&amp;&amp;</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        p<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>c<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            q<span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                i <span class="token punctuation">:</span><span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Vorgehensweise:</p>
+<ol>
+<li>Programmablauf verstehen</li>
+<li>Umwandlung in <strong>while</strong>-Schleifen wenn die Form passt</li>
+<li>Anweisungen übernehmen, wenn die Umwandlung nicht möglich ist</li>
+</ol>
+<p><strong>Hinweise:</strong></p>
+<ul>
+<li>Umwandlungssyntax → <code>while(B) A</code> →</li>
+</ul>
+<pre><code>start: 	if (!B) goto end;
+				A;
+				goto start;
+end: 		skip;
+</code></pre>
+<ul>
+<li>Steuerung der while-Schleife mithilfe von <strong>Variablen</strong> → i := true</li>
+<li>Keine Variablen zusätzlich verwenden wenn diese nicht benötigt werden → Fehler</li>
+<li>Wichtig sind die umschließenden Klammern ( <strong>{ }</strong> )</li>
+</ul>
+<h2 id="aufgabe-51-2-denotationale-semantik">Aufgabe 51-2 (denotationale Semantik)</h2>
+<p>Vorlesung: <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(193)">Skript</a>, <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(192)">weiterführende Literatur</a><br>
+Lösung:</p>
+<ul>
+<li>keine Lösung gefunden</li>
+</ul>
+<p>Herangehensweise:</p>
+<ol>
+<li>Wertetabelle erstellen → am besten durch Programm</li>
+<li>einzelne Parameter “einfrieren”</li>
+<li>Zusammenhänge erkennen</li>
+</ol>
+<p><strong>Hinweis:</strong></p>
+<ul>
+<li>Vermutlich nicht prüfungsrelevant!</li>
+</ul>
+<h2 id="aufgabe-53-1-frames">Aufgabe 53-1 (Frames)</h2>
+<p>Vorlesung: <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(210)">Skript</a><br>
+Lösung:</p>
+<pre class=" language-javascript"><code class="prism  language-javascript"><span class="token punctuation">{</span>
+    <span class="token function-variable function">a</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token function-variable function">b</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">c</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            halt<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token function">c</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Vorgehensweise:</p>
+<ol>
+<li>Frames/Graphen zeichnen</li>
+<li>Aufgrund von statischen Vorgänger die textuellen Deklarationen der Funktion identifizieren</li>
+<li>Aufgrund des dynamischen Vorgängers Funktionen entsprechend aufrufen
+<ol start="4">
+<li>Aufrufe auch per Parameter möglich</li>
+<li>Aufrufe auch durch Rückgabe einer Funktion möglich</li>
+</ol>
+</li>
+</ol>
+<p><strong>Hinweis:</strong></p>
+<ul>
+<li>dynamischer Vorgänger → Frame des aufrufenden Unterprogramms/Funktion</li>
+<li>statischer Vorgänger → Frame des textuell umgebenen Unterprogramms in Code</li>
+<li>in Aufgabe ist <strong>erster Frame</strong> der <strong>main</strong>-Frame → die umrandende Klammer ( <strong>{</strong> )</li>
+<li>erster Frame hat Vorgänger zum OS</li>
+<li>Verwendung von <strong>halt</strong> → Beenden des Programmes</li>
+<li>Semikolons nicht vergessen: nach Aufruf, Deklaration</li>
+<li><strong>Rückgabe</strong> von Funktionen durch Hinschreiben des names <code>f = function() {g;};</code></li>
+<li>Funktionen können Parameter haben</li>
+<li>zurückgegebene Funktion kann beispielsweise so aufgrufen werden: <code>f()()</code></li>
+</ul>
+<h2 id="aufgabe-54-1-überladung-auflösen">Aufgabe 54-1 (Überladung auflösen)</h2>
+<p>Vorlesung: <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(235)">Skript</a>, <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(233)">weiterführende Literatur</a><br>
+Lösung:</p>
+<pre class=" language-javascript"><code class="prism  language-javascript">Solution
+    <span class="token punctuation">{</span> program <span class="token operator">=</span> Program
+                    <span class="token punctuation">{</span> classes <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token keyword">class</span> <span class="token class-name">F</span> <span class="token keyword">extends</span> <span class="token class-name">C</span>
+                                <span class="token punctuation">,</span> <span class="token keyword">class</span> <span class="token class-name">C</span>
+                                <span class="token punctuation">,</span> <span class="token keyword">class</span> <span class="token class-name">D</span> <span class="token keyword">extends</span> <span class="token class-name">E</span>
+                                <span class="token punctuation">,</span> <span class="token keyword">class</span> <span class="token class-name">E</span> <span class="token keyword">extends</span> <span class="token class-name">C</span>
+                                <span class="token punctuation">]</span>
+                    <span class="token punctuation">,</span> methods <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token function">m</span> <span class="token punctuation">(</span> E x<span class="token punctuation">,</span> D y<span class="token punctuation">,</span> C z<span class="token punctuation">)</span>
+                                <span class="token punctuation">,</span> <span class="token function">m</span> <span class="token punctuation">(</span> F x<span class="token punctuation">,</span> D y<span class="token punctuation">,</span> D z<span class="token punctuation">)</span>
+                                <span class="token punctuation">,</span> <span class="token function">m</span> <span class="token punctuation">(</span> D x<span class="token punctuation">,</span> F y<span class="token punctuation">,</span> F z<span class="token punctuation">)</span>
+                                <span class="token punctuation">,</span> <span class="token function">m</span> <span class="token punctuation">(</span> E x<span class="token punctuation">,</span> E y<span class="token punctuation">,</span> E z<span class="token punctuation">)</span>
+                                <span class="token punctuation">,</span> <span class="token function">m</span> <span class="token punctuation">(</span> C x<span class="token punctuation">,</span> C y<span class="token punctuation">,</span> E z<span class="token punctuation">)</span>
+                                <span class="token punctuation">]</span>
+                    <span class="token punctuation">,</span> call <span class="token operator">=</span> <span class="token function">m</span> <span class="token punctuation">(</span> <span class="token keyword">new</span> <span class="token class-name">E</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">D</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">D</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span> 
+                    <span class="token punctuation">}</span>
+    <span class="token punctuation">,</span> minimal <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span> 
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>Vorgehensweise:</p>
+<ol>
+<li>Code kopieren und formatieren</li>
+<li>Hierarchiebaum zeichnen → meistens Verzweigung oder Reihenfolge</li>
+<li>So viele Funktionen wie möglich nicht passend (not applicable) gestalten</li>
+<li>Funktionendeklarationen und Aufrufe mit Blatt testen → minimale Funktionen ermitteln (siehe Hinweis)</li>
+<li>Anpassungen treffen und minimale Funktionen neu bestimmen</li>
+</ol>
+<p><strong>Hinweis:</strong></p>
+<ul>
+<li>Zahl im Minimal-Array ist Index der Funktion im Array <em>methods</em></li>
+<li>Minimale Methode ermitteln
+<ul>
+<li>P ist Menge der möglichen (applicable) Methoden</li>
+<li>M ist die Menge der minimalen Methoden</li>
+<li>Funktion ist minimal, wenn <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">‘</mi><mi mathvariant="normal">¬</mi><mi mathvariant="normal">∃</mi><mi>p</mi><mo>∈</mo><mi>P</mi><mo>:</mo><mi>p</mi><mo>&lt;</mo><mi>m</mi><mi mathvariant="normal">‘</mi></mrow><annotation encoding="application/x-tex">`\lnot \exist p \in P: p &lt; m`</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.88888em; vertical-align: -0.19444em;"></span><span class="mord">‘¬∃</span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span style="margin-right: 0.13889em;" class="mord mathnormal">P</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.73354em; vertical-align: -0.19444em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathnormal">m</span><span class="mord">‘</span></span></span></span></span></li>
+<li>d.h. es existiert in P <strong>keine</strong> Funktion die kleiner ist als die zu prüfende Funktion</li>
+<li>kleiner bedeutet hier, dass jeder Typ <strong>kleiner oder gleich</strong> (weiter unten im Hierarchiebaum) als der Typ der zu prüfende Methode ist.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Beispiel für Minimal:</strong></p>
+<ul>
+<li>Hierarchiebaum: C → D → E → F</li>
+<li>Menge P: [ ( D,F,E ), (C, E, C) ]
+<ul>
+<li>Methode (D,F,E) minimal? → (C,E,C) &lt; (D,F,E)? → <strong>C &gt; D</strong>, <strong>E &gt; F</strong>, <strong>C &gt; E</strong> → (C,E,C) nicht kleiner → <strong>minimal</strong></li>
+<li>Methode (C,E,C) minimal? → (D, F, E) &lt; (C, E, C)? →  D &lt; C, F &lt; E, E &lt; C → (D,F,E) kleiner → <strong>nicht minimal</strong></li>
+</ul>
+</li>
+<li>Menge P: [ (D, E, F), (C, F, D) ]
+<ul>
+<li>Methode (D, E, F) minimal? →   (C, F, D) &lt; (D, E, F)? →  <strong>C &gt; D</strong> →  (C, F, D) nicht kleiner → <strong>minimal</strong></li>
+<li>Methode (C, F, D) minimal? → (D, E, F) &lt; (C, F, D) ? → D &lt; C, <strong>E &gt; F</strong> →  (D, E, F) nicht kleiner  →  <strong>minimal</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>Eigener/Schnellerer Lösungsweg:</strong></p>
+<ul>
+<li>Distanz berechnen via Hierarchiebaum</li>
+<li>Für jeden Schritt zum Eltern-Knoten <strong>-1</strong> berechnen</li>
+<li>Aufaddieren der Gesamtschritte für einen Parameter bis Zielknoten erreicht</li>
+<li>Aufaddieren der Gesamtschritte aller Parameter</li>
+<li>Funktion minimaler, wenn näher an Null</li>
+<li><strong>Überprüfung</strong> mit der richtigen Methode oder Compiler (siehe Autotool-Tests)</li>
+<li>Beispiel
+<ul>
+<li>Hierarchiebaum: C → D → E → F</li>
+<li>Methodendeklaration: 	m (D x, F y, C z)</li>
+<li>Aufruf m( new F(), new F(), new F() )</li>
+<li>Distanz für ersten Parameter → -1 + -1 → <strong>-2</strong></li>
+<li>Distanz für zweiten Parameter → 0 → <strong>0</strong></li>
+<li>Distanz für dritten Parameter → -1 + -1 + -1 → <strong>-3</strong></li>
+<li>Gesamtdistanz → -2 + 0 + -3 → <strong>-5</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="aufgabe-55-1-polymorphie">Aufgabe 55-1 (Polymorphie)</h2>
+<p>Vorlesung: <a href="https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(245)">Skript</a></p>
+<p>Lösung:</p>
+<pre class=" language-javascript"><code class="prism  language-javascript">S<span class="token punctuation">.</span><span class="token operator">&lt;</span>Animal<span class="token operator">&gt;</span><span class="token function">rowlf</span><span class="token punctuation">(</span>S<span class="token punctuation">.</span><span class="token operator">&lt;</span>Animal<span class="token operator">&gt;</span><span class="token function">statler</span><span class="token punctuation">(</span>S<span class="token punctuation">.</span><span class="token operator">&lt;</span>Piggy<span class="token operator">&lt;</span>Animal<span class="token operator">&gt;&gt;</span><span class="token function">statler</span><span class="token punctuation">(</span>S<span class="token punctuation">.</span><span class="token operator">&lt;</span>Animal<span class="token operator">&gt;</span><span class="token function">bunsen</span><span class="token punctuation">(</span>S<span class="token punctuation">.</span><span class="token function">waldorf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> S<span class="token punctuation">.</span><span class="token function">chef</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> S<span class="token punctuation">.</span><span class="token function">chef</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-javascript"><code class="prism  language-javascript">S<span class="token punctuation">.</span><span class="token operator">&lt;</span>Animal<span class="token operator">&gt;</span><span class="token function">rowlf</span><span class="token punctuation">(</span>
+	S<span class="token punctuation">.</span><span class="token operator">&lt;</span>Animal<span class="token operator">&gt;</span><span class="token function">statler</span><span class="token punctuation">(</span>
+		S<span class="token punctuation">.</span><span class="token operator">&lt;</span>Piggy<span class="token operator">&lt;</span>Animal<span class="token operator">&gt;&gt;</span><span class="token function">statler</span><span class="token punctuation">(</span>
+			S<span class="token punctuation">.</span><span class="token operator">&lt;</span>Animal<span class="token operator">&gt;</span><span class="token function">bunsen</span><span class="token punctuation">(</span>
+				S<span class="token punctuation">.</span><span class="token function">waldorf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+				S<span class="token punctuation">.</span><span class="token function">chef</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+			<span class="token punctuation">)</span>
+		<span class="token punctuation">)</span>
+	<span class="token punctuation">)</span><span class="token punctuation">,</span>
+	S<span class="token punctuation">.</span><span class="token function">chef</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+</code></pre>
+<p>Vorgehensweise:</p>
+<ol>
+<li>Code kopieren und formatieren</li>
+<li>Identifizieren der Methoden ohne Parameter → innerste Methoden</li>
+<li>Identifizieren der Methoden mit richtigem Rückgabetyp → äußerste Funktion</li>
+<li>Anfang von innen nach außen
+<ol start="5">
+<li>Welcher Typ gibt die innerste Methode (Schritt 2) zurück</li>
+<li>Wo kann dieser Rückgabetyp eingesetzt werden</li>
+<li>Welche weiteren Parameter muss ich berücksichtigen</li>
+</ol>
+</li>
+</ol>
+<p><strong>Hinweis:</strong> Wichtig sind die expliziten <strong>Typangaben</strong> bei Funktionen, die einen generischen Typ erwarten. Syntax: <code>ClassName.&lt;Type&gt;methodName</code></p>
+
+    </div>
+  </div>
+</body>
+
+</html>

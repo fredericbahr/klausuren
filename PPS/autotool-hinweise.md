@@ -9,7 +9,11 @@
 ## Aufgabe 42-1 (regulärer Ausdruck)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(25)), [Grundlagen](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(21)), [weitere Literatur](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(27))
 
-Lösung: nicht vorhanden
+Lösung: 
+```
+ab(a+c)^*b^*(c(a+c)^*b^*)^*ba
+```
+
 
 **Hinweise:**
 - siehe autotool-test
