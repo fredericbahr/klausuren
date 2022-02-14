@@ -22,9 +22,9 @@ in der Signatur
 
 <details>
     <summary>Lösung</summary>
-    <xmp>
-    S.<Animal>rowlf(S.<Animal>statler(S.<Piggy<Animal>>statler(S.<Animal>bunsen(S.waldorf(), S.chef()))), S.chef())
-    </xmp>
+    <pre>
+    S.&lt;Animal&gt;rowlf(S.&lt;Animal&gt;statler(S.&lt;Piggy&lt;Animal&gt;&gt;statler(S.&lt;Animal&gt;bunsen(S.waldorf(), S.chef()))), S.chef())
+    </pre>
 </details>
 
 <br>
@@ -48,14 +48,14 @@ in der Signatur
 
 <details>
     <summary>Lösung</summary>
-    <xmp>
-    S.<Animal, Fozzie<Animal>> chef(
-        S.<Fozzie<Animal>> waldorf (
-            S.<Animal> waldorf( S.statler())
+    <pre>
+    S.&lt;Animal, Fozzie&lt;Animal&gt;&gt; chef(
+        S.&lt;Fozzie&lt;Animal&gt;&gt; waldorf (
+            S.&lt;Animal&gt; waldorf( S.statler())
         ),
-        S.<Piggy<Kermit>> pops (S.bunsen())
+        S.&lt;Piggy&lt;Kermit&gt;&gt; pops (S.bunsen())
     )
-    </xmp>
+    </pre>
 </details>
 
 <br>
@@ -78,18 +78,18 @@ in der Signatur
 ```
 <details>
     <summary>Lösung</summary>
-    <xmp>
-    S.<Piggy<Animal>>waldorf (
-        S.<Piggy<Animal>>bunsen (
+    <pre>
+    S.&lt;Piggy&lt;Animal&gt;&gt;waldorf (
+        S.&lt;Piggy&lt;Animal&gt;&gt;bunsen (
             S.rowl(S.statler())
         ),
-        S.<Piggy<Piggy<Animal>>>pops(
-            S.<Piggy<Animal>>bunsen (
+        S.&lt;Piggy&lt;Piggy&lt;Animal&gt;&gt;&gt;pops(
+            S.&lt;Piggy&lt;Animal&gt;&gt;bunsen (
                 S.rowl(S.Statler())
             )
         )
     )
-    </xmp>
+    </pre>
 </details>
 
 <br>
