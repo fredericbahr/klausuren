@@ -54,10 +54,10 @@ class E extends _ {}
 class F extends _ {}
 
 class Test {
-    static void test(_ x, _ y, _ z ) {}
-    static void test(_ x, _ y, _ z ) {}
-    static void test(_ x, _ y, _ z ) {}
-    static void test(_ x, _ y, _ z ) {}
-    static void test(_ x, _ y, _ z ) {}
+    static void test(_ x, _ y, _ z ) { System.out.println("Method 1");}
+    static void test(_ x, _ y, _ z ) { System.out.println("Method 2");}
+    static void test(_ x, _ y, _ z ) { System.out.println("Method 3");}
+    static void test(_ x, _ y, _ z ) {System.out.println("Method 4");}
+    static void test(_ x, _ y, _ z ) {System.out.println("Method 5");}
 }
 ```
