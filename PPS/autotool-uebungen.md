@@ -1,7 +1,36 @@
-# Übungen
+# Aufgabeen
+
+<!-- toc -->
+
+- [Polymorphie](#polymorphie)
+  * [1. Aufgabe (autotool)](#1-aufgabe-autotool)
+  * [2. Aufgabe (ausgedacht)](#2-aufgabe-ausgedacht)
+  * [3. Aufgabe (ausgedacht)](#3-aufgabe-ausgedacht)
+- [Überladung](#uberladung)
+  * [Aufgabe 1 (autotool)](#aufgabe-1-autotool)
+  * [Aufgabe 2 (ausgedacht)](#aufgabe-2-ausgedacht)
+  * [Aufgabe 3 (ausgedacht)](#aufgabe-3-ausgedacht)
+  * [Aufgabe 4 (ausgedacht)](#aufgabe-4-ausgedacht)
+- [Frames](#frames)
+  * [Aufgabe 1 (autotool)](#aufgabe-1-autotool-1)
+  * [Aufgabe 2 (autotool)](#aufgabe-2-autotool)
+  * [Aufgabe 3 (ausgedacht)](#aufgabe-3-ausgedacht-1)
+  * [Aufgabe 4 (ausgedacht)](#aufgabe-4-ausgedacht-1)
+  * [Aufgabe 5 (ausgedacht)](#aufgabe-5-ausgedacht)
+- [While -> Goto](#while---goto)
+  * [Aufgabe 1 (autotool)](#aufgabe-1-autotool-2)
+  * [Aufgabe 2 (ausgedacht)](#aufgabe-2-ausgedacht-1)
+  * [Aufgabe 3 (ausgedacht)](#aufgabe-3-ausgedacht-2)
+  * [Aufgabe 3 (ausgedacht)](#aufgabe-3-ausgedacht-3)
+- [Goto -> While](#goto---while)
+  * [Aufgabe 1 (autotool)](#aufgabe-1-autotool-3)
+  * [Aufgabe 2 (ausgedacht)](#aufgabe-2-ausgedacht-2)
+  * [Aufgabe 3 (ausgedacht)](#aufgabe-3-ausgedacht-4)
+
+<!-- tocstop -->
 
 ## Polymorphie
-### 1. Übung (autotool)
+### 1. Aufgabe (autotool)
 ```
 Gesucht ist ein Ausdruck vom Typ Fozzie<Animal, Animal>
 in der Signatur
@@ -29,7 +58,7 @@ in der Signatur
 
 <br>
 
-### 2. Übung (ausgedacht)
+### 2. Aufgabe (ausgedacht)
 
 ```
 Gesucht ist ein Ausdruck vom Typ Piggy<Fozzie<Animal>, Animal>
@@ -60,7 +89,7 @@ in der Signatur
 
 <br>
 
-### 3. Übung (ausgedacht)
+### 3. Aufgabe (ausgedacht)
 
 ```
 Gesucht ist ein Ausdruck vom Typ Kermit<Piggy<Animal>, Fozzie<Animal>>
@@ -96,7 +125,7 @@ in der Signatur
 
 ## Überladung
 
-### Übung 1 (autotool)
+### Aufgabe 1 (autotool)
 
 ```
 Fill in all holes (_) in the following program
@@ -144,7 +173,7 @@ applicable method declarations (cf. JLS 15.12.2) is
 
 <br>
 
-### Übung 2 (ausgedacht)
+### Aufgabe 2 (ausgedacht)
 
 ```
 Fill in all holes (_) in the following program
@@ -192,7 +221,7 @@ applicable method declarations (cf. JLS 15.12.2) is
 
 <br>
 
-### Übung 3 (ausgedacht)
+### Aufgabe 3 (ausgedacht)
 
 ```
 Fill in all holes (_) in the following program
@@ -242,7 +271,7 @@ applicable method declarations (cf. JLS 15.12.2) is
 
 <br>
 
-### Übung 4 (ausgedacht)
+### Aufgabe 4 (ausgedacht)
 
 ```
 Fill in all holes (_) in the following program
@@ -373,7 +402,7 @@ und die Frames dann folgende Verweise enthalten:
 
 <br>
 
-### Übung 3 (ausgedacht)
+### Aufgabe 3 (ausgedacht)
 
 ```
 Ersetzen Sie im Programm
@@ -411,7 +440,7 @@ und die Frames dann folgende Verweise enthalten:
 
 <br>
 
-### Übung 4 (ausgedacht)
+### Aufgabe 4 (ausgedacht)
 
 ```
 Ersetzen Sie im Programm
@@ -453,7 +482,7 @@ und die Frames dann folgende Verweise enthalten:
 
 <br>
 
-### Übung 5 (ausgedacht)
+### Aufgabe 5 (ausgedacht)
 Lösung dürfte stimmen, unsicher wegen Sichtbarkeiten in höheren Blöcken.
 ```
 Ersetzen Sie im Programm
@@ -499,3 +528,460 @@ und die Frames dann folgende Verweise enthalten:
 
 <br>
 
+## While -> Goto
+
+### Aufgabe 1 (autotool)
+
+```
+Gesucht ist ein Programm,
+das äquivalent ist zu
+    {foo : while (a)
+               {bar : while (b)
+                          {p;
+                          if (c)
+                              break bar;
+                          q;
+                          if (c)
+                              continue foo;
+                          r;}}}
+und diese Bedingungen erfüllt
+    And [ Flat, No_Loops]
+```
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+{
+foo:
+    if(!a)
+        goto end;
+    goto bar;
+
+bar: 
+    if(!b)
+        goto foo;
+    goto barInner;
+
+barInner: 
+    p;
+    if(c)
+        goto foo;
+    q;
+    if(c) 
+        goto foo;
+    r;
+    goto bar;
+
+end : skip;
+}
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 2 (ausgedacht)
+
+```
+Gesucht ist ein Programm,
+das äquivalent ist zu
+    {
+        foo: while (a) {
+            q;
+            if (c) {
+                bar: while (b) {
+                    p;
+                    if (c)
+                        continue foo;
+                    baz: while (d) {
+                        r;
+                    }
+                    if (c)
+                        break bar;
+                    s;
+                }
+            }
+        }
+    }
+und diese Bedingungen erfüllt
+    And [ Flat, No_Loops]
+```
+<details>
+    <summary>Lösung</summary>
+    <pre>
+{
+foo:
+    if (!a)
+        goto end;
+    q;
+    if (c) 
+        goto bar;
+    goto foo;
+
+bar:
+    if (!b)
+        goto foo;
+    p;
+    if (c)
+        goto foo;
+    goto baz;
+
+barSecond:
+    if (c)
+        goto foo;
+    s;
+    goto bar;
+    
+baz:
+    if (!d)
+        goto barSecond;
+    r;
+    goto baz;
+
+end : skip;
+}
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 3 (ausgedacht)
+
+```
+Gesucht ist ein Programm,
+das äquivalent ist zu
+    {
+        foo: while (a) {
+            if (c)
+                q;
+            r;
+            bar: while (b) {
+                s;
+                if (d)
+                    continue bar;
+                if (e)
+                    break foo;
+            }
+            q;
+        }
+        baz: while (f) {
+            q;
+            r;
+            if (c)
+                break baz;
+            s;
+        }
+    }
+und diese Bedingungen erfüllt
+    And [ Flat, No_Loops]
+```
+<details>
+    <summary>Lösung</summary>
+    <pre>
+{
+foo:
+    if (!a)
+        goto baz;
+    goto fooInnerFirst;
+
+fooInnerFirst:
+    if (c)
+        q;
+    r;
+    goto bar;
+
+bar:
+    if (!b)
+        goto fooInnerSecond;
+    s;
+    if (d)
+        goto bar;
+    if (e)
+        got baz;
+    goto bar;
+
+fooInnerSecond:
+    q;
+    goto foo;
+
+baz:
+    if (!f)
+        goto end;
+    q;
+    r;
+    if (c)
+        goto end;
+    s;
+    goto baz;
+
+end: skip;
+}
+    </pre>
+</details>
+
+<br>
+
+
+### Aufgabe 3 (ausgedacht)
+
+```
+Gesucht ist ein Programm,
+das äquivalent ist zu
+    {
+        foo: while (a) {
+            bar: while (b) {
+                q;
+                baz: while (d) {
+                    r;
+                    if (c)
+                        break bar;
+                    if (e)
+                        continue foo;
+                    s;
+                    if (c)
+                        continue baz;
+                    q;
+                    if (c) {
+                        qux: while  (f) {
+                            q;
+                            if (e)
+                                break foo;
+                        }
+                    }
+                }
+            }
+        }
+    }
+und diese Bedingungen erfüllt
+    And [ Flat, No_Loops]
+```
+<details>
+    <summary>Lösung</summary>
+    <pre>
+{
+foo:
+    if (!a)
+        goto end;
+    goto bar;
+
+bar:
+    if (!b)
+        goto foo;
+    q;
+    goto baz;
+
+baz:
+    if (!d)
+        goto bar;
+    r;
+    if (c)
+        goto foo;
+    if (e)
+        goto foo;
+    s;
+    if (c)
+        goto baz;
+    q;
+    if (c)
+        goto qux;
+    goto baz;
+
+qux:
+    if (!f)
+        goto baz;
+    q;
+    if (e)
+        goto end;
+    goto qux;
+
+end: skip;
+}
+    </pre>
+</details>
+
+<br>
+
+## Goto -> While
+
+### Aufgabe 1 (autotool)
+
+```
+Gesucht ist ein Programm,
+das äquivalent ist zu
+    {start : if (! b)
+                 goto end;
+    p;
+    if (! c)
+        goto later;
+    goto start;
+    later : q;
+    if (! a)
+        goto start;
+    end : skip;}
+und diese Bedingungen erfüllt
+    And [ No_Labels
+        , No_Gotos
+        , Simple_Loops
+        ]
+```
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+{
+    i := true;
+    while (b && i) {
+        p;
+        if (!c) {
+            q;
+            if (a) {
+                i := false;
+            }
+        }
+    }
+}
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 2 (ausgedacht)
+
+```
+Gesucht ist ein Programm,
+das äquivalent ist zu
+    {
+        foo:
+            if (!a)
+                goto end;
+            goto bar;
+
+        bar:
+            if (!b)
+                goto foo;
+            q;
+            if (c)
+                goto baz;
+            r;
+            goto bar;
+
+        baz:
+            q;
+            if (c)
+                goto end;
+            goto foo;
+
+        end: skip;
+    }
+und diese Bedingungen erfüllt
+    And [ No_Labels
+        , No_Gotos
+        , Simple_Loops
+        ]
+```
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+{
+    i := true;
+    h := true;
+    while (a) {
+        i := true
+        while (b && i) {
+            q;
+            if (c) {
+                i := false;
+            }
+            if (!c) {
+                r;
+            }
+        }
+        q;
+        if (c) {
+            h := false;
+        }
+    }
+}
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 3 (ausgedacht)
+
+```
+Gesucht ist ein Programm,
+das äquivalent ist zu
+    {
+        foo:
+            if (!a)
+                goto baz;
+            r;
+            if (c)
+                goto bar;
+            goto foo;
+
+        bar:
+            q;
+            if (c)
+                goto baz;
+            r;
+            if (c)
+                goto end;
+            goto foo;
+
+        baz:
+            if (!d)
+                goto end;
+            r;
+            if (c)
+                goto end;
+            q;
+            goto baz;
+        
+        end: skip;
+    }
+und diese Bedingungen erfüllt
+    And [ No_Labels
+        , No_Gotos
+        , Simple_Loops
+        ]
+```
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+{
+    i := true;
+    h := false;
+    j := false;
+    while (a && i && h) {
+        r;
+        if (c) {
+            q;
+            if (c) {
+                i := false;
+            }
+            if (!c) {
+                r;
+                if (c) {
+                    h := false;
+                }
+            }
+        }
+    }
+    while (d && h && j) {
+        r;
+        if (c) {
+            j := false;
+        }
+        if (!c) {
+            q;
+        }
+    }
+
+}
+    </pre>
+</details>
+
+<br>
