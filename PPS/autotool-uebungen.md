@@ -15,6 +15,8 @@
   * [Aufgabe 2 (ausgedacht)](#aufgabe-2-ausgedacht)
   * [Aufgabe 3 (ausgedacht)](#aufgabe-3-ausgedacht)
   * [Aufgabe 4 (ausgedacht)](#aufgabe-4-ausgedacht)
+  * [Aufgabe 5 (Altklausur)](#aufgabe-5-altklausur)
+  * [Aufgabe 6 (autotool Bianca)](#aufgabe-6-autotool-bianca)
 - [Frames](#frames)
   * [Aufgabe 1 (autotool)](#aufgabe-1-autotool-1)
   * [Aufgabe 2 (autotool)](#aufgabe-2-autotool)
@@ -437,26 +439,88 @@ applicable method declarations (cf. JLS 15.12.2) is
   [ 2, _]
 ```
 
+### Aufgabe 5 (Altklausur)
+
+```
+Fill in all holes (_) in the following program
+  Program
+      { classes = [ class D extends _
+                  , class E
+                  , class C extends D
+                  , class F extends D
+                  ]
+      , methods = [ m ( _ x, E y, D z)
+                  , m ( E x, E y, C z)
+                  , m ( F x, E y, D z)
+                  ]
+      , call = m ( new _ () , new _ () , new C () ) 
+      }
+such that the set of indices of minimal (most specific)
+applicable method declarations (cf. JLS 15.12.2) is
+  [ 1, _]
+```
+
 <details>
     <summary>Lösung</summary>
     <pre>
         Solution
     { program = Program
-                    { classes = [ class C extends E
-                                , class D
-                                , class E extends F
+                    { classes = [ class D extends E
+                                , class E
+                                , class C extends D
                                 , class F extends D
                                 ]
-                    , methods = [ m ( D x, D y, E z)
-                                , m ( C x, C y, D z)
-                                , m ( F x, F y, F z)
-                                , m ( D x, E y, F z)
-                                , m ( F x, E y, C z)
-                                , m ( C x, F y, E z)
+                    , methods = [ m ( C x, E y, D z)
+                                , m ( E x, E y, C z)
+                                , m ( F x, E y, D z)
                                 ]
-                    , call = m ( new F () , new C () , new F () ) 
+                    , call = m ( new C () , new E () , new C () ) 
                     }
-    , minimal = [ 2, 3] 
+    , minimal = [ 1, 0] 
+    }
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 6 (autotool Bianca)
+
+```
+Fill in all holes (_) in the following program
+  Program
+      { classes = [ class D extends E
+                  , class C extends E
+                  , class E
+                  , class F extends _
+                  ]
+      , methods = [ m ( E x, F y, C z)
+                  , m ( D x, C y, _ z)
+                  , m ( _ x, F y, F z)
+                  ]
+      , call = m ( new _ () , new _ () , new C () ) 
+      }
+such that the set of indices of minimal (most specific)
+applicable method declarations (cf. JLS 15.12.2) is
+  [ 0, _]
+```
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+        Solution
+    { program = Program
+                    { classes = [ class D extends E
+                                , class C extends E
+                                , class E
+                                , class F extends _
+                                ]
+                    , methods = [ m ( E x, F y, C z)
+                                , m ( D x, C y, E z)
+                                , m ( E x, F y, F z)
+                                ]
+                    , call = m ( new D () , new F () , new C () ) 
+                    }
+    , minimal = [ 0, 1] 
     }
     </pre>
 </details>
