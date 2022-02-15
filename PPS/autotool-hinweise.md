@@ -1,4 +1,29 @@
-﻿# PPS - Autotool Hinweise
+# PPS - Autotool Hinweise
+
+<!-- toc -->
+
+- [Aufgabe 42-1 (Blockkommentar)](#aufgabe-42-1-blockkommentar)
+- [Aufgabe 42-1 (regulaerer Ausdruck)](#aufgabe-42-1-regulaerer-ausdruck)
+- [Aufgabe 42-3 (Formel -> Regexp)](#aufgabe-42-3-formel---regexp)
+- [Aufgabe 43-1 (eindeutige CFG)](#aufgabe-43-1-eindeutige-cfg)
+- [Aufgabe 43-2 (CFG a ungleich b)](#aufgabe-43-2-cfg-a-ungleich-b)
+- [Aufgabe 47-1 (Nebenwirkungen)](#aufgabe-47-1-nebenwirkungen)
+- [Aufgabe 49-1 (While -> Goto)](#aufgabe-49-1-while---goto)
+- [Aufgabe 49-2 (Goto -> While)](#aufgabe-49-2-goto---while)
+- [Aufgabe 51-2 (denotationale Semantik)](#aufgabe-51-2-denotationale-semantik)
+- [Aufgabe 53-1 (Frames)](#aufgabe-53-1-frames)
+- [Aufgabe 54-1 (Überladung auflösen)](#aufgabe-54-1-uberladung-auflosen)
+- [Aufgabe 55-1 (Polymorphie)](#aufgabe-55-1-polymorphie)
+- [Theorie](#theorie)
+  * [Compiler-Schritte](#compiler-schritte)
+  * [Hoare-Kalkül](#hoare-kalkul)
+    + [Axiom fuer Zuweisung](#axiom-fuer-zuweisung)
+    + [Axiom fuer die Simultanzuweisung](#axiom-fuer-die-simultanzuweisung)
+    + [Axiom fuer logische Umformungen](#axiom-fuer-logische-umformungen)
+    + [Axiom fuer Verzweigung](#axiom-fuer-verzweigung)
+    + [Axiom fuer Schleifen](#axiom-fuer-schleifen)
+
+<!-- tocstop -->
 
 ## Aufgabe 42-1 (Blockkommentar)
 
@@ -6,7 +31,7 @@
 - siehe regulärer Ausdruck
 - Substition der eigentlichen Wörter mit Buchstaben
 
-## Aufgabe 42-1 (regulärer Ausdruck)
+## Aufgabe 42-1 (regulaerer Ausdruck)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(25)), [Grundlagen](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(21)), [weitere Literatur](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(27))
 
 Lösung: 
@@ -366,3 +391,63 @@ Vorgehensweise:
 	 7. Welche weiteren Parameter muss ich berücksichtigen
 
 **Hinweis:** Wichtig sind die expliziten **Typangaben** bei Funktionen, die einen generischen Typ erwarten. Syntax: `ClassName.<Type>methodName`
+
+
+## Theorie
+
+### Compiler-Schritte
+1. Frontend/Analysephase
+    1. Lexikalische Analyse &rarr; Tokens
+    2. Syntaktische Analyse &rarr; Syntaxbaum/AST
+    3. Semantische Analyse &rarr; dekorierter/attributierter Syntaxbaum/AST
+2. Backend/Synthesephase
+    1. Zwischencodeerzeugung &rarr; Zwischencode/Austauschformat (maschinennahe)
+    2. Codeoptimierung &rarr; Programmoptimierungne auf Zwischencode/Maschinencode
+    3. Codegenerierung &rarr; Maschinencode/Code in Zielsprache
+
+### Hoare-Kalkül
+
+#### Axiom fuer Zuweisung
+
+`{ N[x/E] } x := E { N }`
+
+N[x/E] ist der Ausdruck N, wobei jedes Vorkommen des Namens x durch den Ausdruck E ersetzt wird
+
+Beispiel:
+
+```
+{ ... } y := x+3 { y >= 7}
+(y>=7)[y/x+3] = (x+3 >= 7) = (x >= 4)
+```
+
+#### Axiom fuer die Simultanzuweisung
+
+`{ N[v1/e1,v2/e2] } (v1, v2) := (e1, e2) { N }`
+
+Ähnlich wie bei [Axiom für Zuweisung](#axiom-fuer-die-simultanzuweisung) nur simultanes Ersetzen der beiden Namen
+
+Beispiel:
+```
+{ ... } (a,b) := (b,a) { a=2 und b=5}
+{a=2 und b=5}[a/b, b/a] = {b=2 und a=5}
+
+{ ... } (x,y) := (x+y, y-x) {x=7 und y>=3}
+{x=7 und y>=3}[x/x+y,y/y-x] = {x+y=7 und y-x=>3}
+```
+
+#### Axiom fuer logische Umformungen
+
+`wenn {V} A {N} und V' => V und N => N' dann {V'} A {N'}`
+
+* Verschärfen einer Vorbedingungen (von V zu V')
+* Abschwächen einer Nachbedingungen (von N zu N')
+
+#### Axiom fuer Verzweigung
+
+`wenn { V und B } C { N } und { V und not B } D { N } dann { V } if (B) then C else D { N }`
+
+#### Axiom fuer Schleifen
+
+`wenn { I and B } A { I }, dann { I } while (B) do A { I and not B }`
+
+Arbeiten mit Invariante
