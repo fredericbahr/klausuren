@@ -34,6 +34,15 @@
   * [Aufgabe 1 (autotool)](#aufgabe-1-autotool-3)
   * [Aufgabe 2 (ausgedacht)](#aufgabe-2-ausgedacht-2)
   * [Aufgabe 3 (ausgedacht)](#aufgabe-3-ausgedacht-4)
+- [Grammatiken](#grammatiken)
+  * [Aufgabe 1 (Internet)](#aufgabe-1-internet)
+- [Regexp](#regexp)
+  * [Aufgabe 1 (Internet)](#aufgabe-1-internet-1)
+  * [Aufgabe 2 (Internet)](#aufgabe-2-internet)
+  * [Aufgabe 3 (Internet)](#aufgabe-3-internet)
+  * [Aufgabe 4 (Internet)](#aufgabe-4-internet)
+  * [Aufgabe 5 (Internet)](#aufgabe-5-internet)
+  * [Aufgabe 6 (Internet)](#aufgabe-6-internet)
 
 <!-- tocstop -->
 
@@ -1277,6 +1286,128 @@ und diese Bedingungen erfüllt
     }
 
 }
+    </pre>
+</details>
+
+<br>
+
+## Grammatiken
+
+### Aufgabe 1 (Internet)
+[Quelle](https://info-wsf.de/uebungsaufgaben-formale-und-regulaere-sprachen/#Aufgabe_6)
+
+Gib eine Grammatik G an, die die formale Sprache L(G) = {a^nb^2n | n > 0} erzeugt.
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+G = (N, T, S, P)
+N = {S, T}
+T = {a, b}
+S = S
+P = {
+    S &rarr; aTbb
+    T &rarr; aTbb
+    T &rarr; eps
+}
+    </pre>
+</details>
+
+<br>
+
+## Regexp
+
+### Aufgabe 1 (Internet)
+
+[Quelle](https://www.inf.hs-flensburg.de/lang/veranst/thi/regulaer.htm)
+
+Regulärer Ausdruck für Sprachen mit Alphabet A = {a,b}:
+L = {w | w fängt mit aa an oder hört mit bb auf}
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+(aa(a+b)^*) + ((a+b)^*bb)
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 2 (Internet)
+
+[Quelle](https://www.inf.hs-flensburg.de/lang/veranst/thi/regulaer.htm)
+
+Regulärer Ausdruck für Sprachen mit Alphabet A = {a,b}:
+L = {w | w enthält eine gerade Anzahl von a´s}
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+(b^*ab^*ab^*)^*b^*
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 3 (Internet)
+
+[Quelle](https://www.inf.hs-flensburg.de/lang/veranst/thi/regulaer.htm)
+
+Regulärer Ausdruck für Sprachen mit Alphabet A = {a,b}:
+L = {w | w enthält genau ein Vorkommen von bb}
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+noch nicht gefunden
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 4 (Internet)
+
+[Quelle](https://www.inf.hs-flensburg.de/lang/veranst/thi/regulaer.htm)
+
+Regulärer Ausdruck für Sprachen mit Alphabet A = {a,b}:
+L = {w | w enthält mindestens zwei b´s}
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+(a+b)^*b(a+b)^*b(a+b)^*
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 5 (Internet)
+
+[Quelle](https://www.inf.hs-flensburg.de/lang/veranst/thi/regulaer.htm)
+
+Regulärer Ausdruck für Sprachen mit Alphabet A = {a,b}:
+L = {w | w enthält genau zwei b´s}
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+a^*ba^*ba^*
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 6 (Internet)
+
+[Quelle](https://www.inf.hs-flensburg.de/lang/veranst/thi/regulaer.htm)
+
+Regulärer Ausdruck für Sprachen mit Alphabet A = {a,b}:
+L = {w | w endet auf höchstens ein b}
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+noch keine Lösung
     </pre>
 </details>
 
