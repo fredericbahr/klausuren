@@ -392,6 +392,15 @@ Vorgehensweise:
 
 **Hinweis:** Wichtig sind die expliziten **Typangaben** bei Funktionen, die einen generischen Typ erwarten. Syntax: `ClassName.<Type>methodName`
 
+## Aufgabe 41-3 (JVM/Kellermaschine)
+
+* Push &lt;Zahl&gt; &rarr; packt die Zahl auf den Stak
+* Load &rarr; lädt die Variable am zuvor gepushten Index
+* Add &rarr; addiert die obersten zwei Werte auf dem Stack, speichert Ergebnis oben auf Stack &rarr; [2,3] Add [5]
+* Mul &rarr; multipliziert die obersten zwei Werte auf dem Stack, speichert Ergenis oben auf Stack &rarr; [2,3,5] Mul [6,5]
+* Sub &rarr; subtrahiert die obersten zwei Werten auf folgende Weise: [1,2] Sub (x2-x1) [1]
+* Abschluss &rarr; Push 0, Store, Halt &rarr; speicher Ergebnis in Variable am Index 0 (y)
+
 
 ## Theorie
 
