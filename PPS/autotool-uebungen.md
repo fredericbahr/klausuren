@@ -36,13 +36,18 @@
   * [Aufgabe 3 (ausgedacht)](#aufgabe-3-ausgedacht-4)
 - [Grammatiken](#grammatiken)
   * [Aufgabe 1 (Internet)](#aufgabe-1-internet)
-- [Regexp](#regexp)
-  * [Aufgabe 1 (Internet)](#aufgabe-1-internet-1)
   * [Aufgabe 2 (Internet)](#aufgabe-2-internet)
   * [Aufgabe 3 (Internet)](#aufgabe-3-internet)
   * [Aufgabe 4 (Internet)](#aufgabe-4-internet)
   * [Aufgabe 5 (Internet)](#aufgabe-5-internet)
   * [Aufgabe 6 (Internet)](#aufgabe-6-internet)
+- [Regexp](#regexp)
+  * [Aufgabe 1 (Internet)](#aufgabe-1-internet-1)
+  * [Aufgabe 2 (Internet)](#aufgabe-2-internet-1)
+  * [Aufgabe 3 (Internet)](#aufgabe-3-internet-1)
+  * [Aufgabe 4 (Internet)](#aufgabe-4-internet-1)
+  * [Aufgabe 5 (Internet)](#aufgabe-5-internet-1)
+  * [Aufgabe 6 (Internet)](#aufgabe-6-internet-1)
 
 <!-- tocstop -->
 
@@ -1190,7 +1195,7 @@ und diese Bedingungen erfüllt
 {
     i := true;
     h := true;
-    while (a) {
+    while (a && h) {
         i := true
         while (b && i) {
             q;
@@ -1309,6 +1314,136 @@ P = {
     S &rarr; aTbb
     T &rarr; aTbb
     T &rarr; eps
+}
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 2 (Internet)
+[Quelle](https://verify.rwth-aachen.de/fosap10/uebungen/blaetter/Loesung6.pdf)
+
+Gib eine Grammatik G an, die die formale Sprache L(G) = {a^nb^n | n >= 0} erzeugt.
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+G = (N, T, S, P)
+N = {S}
+T = {a, b}
+S = S
+P = {
+    S &rarr; eps
+    S &rarr; aSb
+}
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 3 (Internet)
+[Quelle](https://verify.rwth-aachen.de/fosap10/uebungen/blaetter/Loesung6.pdf)
+
+Gib eine Grammatik G an, die die formale Sprache L(G) = {ab^nc | n > 0} erzeugt.
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+G = (N, T, S, P)
+N = {S, B}
+T = {a, b, c}
+S = S
+P = {
+    S &rarr; aBc
+    B &rarr; b
+    B &rarr; bB
+}
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 4 (Internet)
+[Quelle](https://verify.rwth-aachen.de/fosap10/uebungen/blaetter/Loesung6.pdf)
+
+Gib eine Grammatik G an, die die formale Sprache L(G) = {w element {a,b,c}* | #a(w) = #b(w)} erzeugt.
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+G = (N, T, S, P)
+N = {S}
+T = {a, b, c}
+S = S
+P = {
+    S &rarr; eps
+    S &rarr; SaSbS
+    S &rarr; SbSaS
+    S &rarr; cS
+}
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 5 (Internet)
+[Quelle](https://www.coli.uni-saarland.de/courses/grammatikformalismen/2011/exercises/LoesungUebung1.pdf)
+
+Gib eine Grammatik G an, die die formale Sprache L(G) = {a^m b c^n d^m | m,n >= 1} erzeugt.
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+G = (N, T, S, P)
+N = {S, T, C}
+T = {a, b, c, d}
+S = S
+P = {
+    S &rarr; aTd
+    T &rarr; S
+    T &rarr; bC
+    C &rarr; cC
+    C &rarr; c
+}
+
+alternativ:
+P = {
+    S &rarr; aSd
+    S &rarr; abCd
+    C &rarr; cC
+    C &rarr; c
+}
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 6 (Internet)
+[Quelle](https://www.coli.uni-saarland.de/courses/grammatikformalismen/2011/exercises/LoesungUebung1.pdf)
+
+Gib eine Grammatik G an, die die formale Sprache L(G) = {a^m b^n a^n b^m | m,n >= 1} erzeugt.
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+G = (N, T, S, P)
+N = {S, T, U}
+T = {a, b}
+S = S
+P = {
+    S &rarr; aTb
+    T &rarr; S
+    T &rarr; bUa
+    U &rarr; bUa
+    U &rarr; eps
+}
+
+alternativ:
+P = {
+    S &rarr; aSd
+    S &rarr; abCd
+    C &rarr; cC
+    C &rarr; c
 }
     </pre>
 </details>
