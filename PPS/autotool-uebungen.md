@@ -23,6 +23,8 @@
   * [Aufgabe 3 (ausgedacht)](#aufgabe-3-ausgedacht-1)
   * [Aufgabe 4 (ausgedacht)](#aufgabe-4-ausgedacht-1)
   * [Aufgabe 5 (ausgedacht)](#aufgabe-5-ausgedacht)
+  * [Aufgabe 6 (autotool Bianca)](#aufgabe-6-autotool-bianca-1)
+  * [Aufgabe 7 (ausgedacht)](#aufgabe-7-ausgedacht)
 - [While -> Goto](#while---goto)
   * [Aufgabe 1 (autotool)](#aufgabe-1-autotool-2)
   * [Aufgabe 2 (ausgedacht)](#aufgabe-2-ausgedacht-1)
@@ -726,6 +728,94 @@ und die Frames dann folgende Verweise enthalten:
             help;
         };
         f3(f4);
+    };
+    f2()();
+}
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 6 (autotool Bianca)
+
+```
+Ersetzen Sie im Programm
+    { missing ;
+    missing ;
+    missing ;
+    }
+jedes 'missing' durch eine Deklaration oder einen Ausdruck,
+so daß nach höchstens 40 Auswertungsschritten
+die Anweisung 'halt' erreicht wird
+und die Frames dann folgende Verweise enthalten:
+    Frame 1 : dynamischer Vorgänger 0 , statischer Vorgänger 0 ;
+    Frame 2 : dynamischer Vorgänger 1 , statischer Vorgänger 1 ;
+    Frame 3 : dynamischer Vorgänger 2 , statischer Vorgänger 1 ;
+    Frame 4 : dynamischer Vorgänger 3 , statischer Vorgänger 3 ;
+```
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+{
+    f3 = function() {
+        f4 = function() {
+            halt;
+        }
+        f4();
+    };
+    f2 = funtion() {f3();};
+    f2();
+}
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 7 (ausgedacht)
+Lösbarkeit aufgrund von f6 nicht sicher
+In Programmiersprachen eigentlich möglich.
+```
+Ersetzen Sie im Programm
+    { missing ;
+    missing ;
+    missing ;
+    }
+jedes 'missing' durch eine Deklaration oder einen Ausdruck,
+so daß nach höchstens 40 Auswertungsschritten
+die Anweisung 'halt' erreicht wird
+und die Frames dann folgende Verweise enthalten:
+    Frame 1 : dynamischer Vorgänger 0 , statischer Vorgänger 0 ;
+    Frame 2 : dynamischer Vorgänger 1 , statischer Vorgänger 1 ;
+    Frame 3 : dynamischer Vorgänger 2 , statischer Vorgänger 2 ;
+    Frame 4 : dynamischer Vorgänger 2 , statischer Vorgänger 3 ;
+    Frame 5 : dynamischer Vorgänger 1 , statischer Vorgänger 3 ;
+    Frame 6 : dynamischer Vorgänger 5 , statischer Vorgänger 5 ;
+    Frame 7 : dynamischer Vorgänger 5 , statischer Vorgänger 1 ;
+    
+```
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+{
+    f7 = function() {
+        halt;
+    };
+    f2 = function() {
+        f3 = function() {
+            f5 = function() {
+                f6 = function() {};
+                f6();
+                f7();
+            };
+            f4 = function() {
+                f5;
+            };
+            f4;
+        };
+        zwischen = f3()();
+        zwischen;
     };
     f2()();
 }
