@@ -48,6 +48,10 @@
   * [Aufgabe 4 (Internet)](#aufgabe-4-internet-1)
   * [Aufgabe 5 (Internet)](#aufgabe-5-internet-1)
   * [Aufgabe 6 (Internet)](#aufgabe-6-internet-1)
+- [JVM/Kellermaschine](#jvmkellermaschine)
+  * [Aufgabe 1 (autotool Bianca)](#aufgabe-1-autotool-bianca)
+  * [Aufgabe 2 (ausgedacht)](#aufgabe-2-ausgedacht-3)
+  * [Aufgabe 3 (ausgedacht)](#aufgabe-3-ausgedacht-5)
 
 <!-- tocstop -->
 
@@ -1566,6 +1570,132 @@ L = {w | w endet auf höchstens ein b}
     <summary>Lösung</summary>
     <pre>
 noch keine Lösung
+    </pre>
+</details>
+
+<br>
+
+## JVM/Kellermaschine
+
+### Aufgabe 1 (autotool Bianca)
+
+```
+Konstruieren Sie eine Maschine,
+die die Funktion
+  \ [ x1, x2] -> (x1 + (x2 + 1)) * (3 * x2)
+berechnet!
+Die Maschine soll diese Bedingungen erfüllen
+    Builtins
+        (mkSet
+            [ Add, Sub, Mul])
+```
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+[ Push 2
+, Load
+, Push 1
+, Add
+, Push 1
+, Load
+, Add
+, Push 3
+, Push 2
+, Load
+, Mul
+, Mul
+, Push 0
+, Store
+, Halt
+]
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 2 (ausgedacht)
+
+```
+Konstruieren Sie eine Maschine,
+die die Funktion
+  \ [ x1, x2, x3] -> 200 - 7(x1 + 5) - x3(4 + x2)
+berechnet!
+Die Maschine soll diese Bedingungen erfüllen
+    Builtins
+        (mkSet
+            [ Add, Sub, Mul])
+```
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+[
+    Push 200,
+    Push 1,
+    Load,
+    Push 5,
+    Add,
+    Push 7,
+    Mul,
+    Push 4,
+    Push 2,
+    Load,
+    Add,
+    Push 3,
+    Load,
+    Mul,
+    Sub,
+    Push 0,
+    Store,
+    Halt
+]
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 3 (ausgedacht)
+
+```
+Konstruieren Sie eine Maschine,
+die die Funktion
+  \ [ x1, x2, x3] -> ((x3 * 4) + x1) - (3(x2 + 1) + (x2 - x1))
+berechnet!
+Die Maschine soll diese Bedingungen erfüllen
+    Builtins
+        (mkSet
+            [ Add, Sub, Mul])
+```
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+[
+    Push 3,
+    Load,
+    Push 4,
+    Mul,
+    Push 1,
+    Load,
+    Add,
+    Push 2,
+    Load,
+    Push 1,
+    Add,
+    Push 3,
+    Mul,
+    Push 2,
+    Load,
+    Push 1,
+    Load,
+    Sub,
+    Add,
+    Sub,
+    Push 0,
+    Store,
+    Halt
+]
     </pre>
 </details>
 
