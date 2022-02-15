@@ -1301,8 +1301,9 @@ und diese Bedingungen erfüllt
 ### Aufgabe 1 (Internet)
 [Quelle](https://info-wsf.de/uebungsaufgaben-formale-und-regulaere-sprachen/#Aufgabe_6)
 
+```
 Gib eine Grammatik G an, die die formale Sprache L(G) = {a^nb^2n | n > 0} erzeugt.
-
+```
 <details>
     <summary>Lösung</summary>
     <pre>
@@ -1323,7 +1324,9 @@ P = {
 ### Aufgabe 2 (Internet)
 [Quelle](https://verify.rwth-aachen.de/fosap10/uebungen/blaetter/Loesung6.pdf)
 
+```
 Gib eine Grammatik G an, die die formale Sprache L(G) = {a^nb^n | n >= 0} erzeugt.
+```
 
 <details>
     <summary>Lösung</summary>
@@ -1344,7 +1347,9 @@ P = {
 ### Aufgabe 3 (Internet)
 [Quelle](https://verify.rwth-aachen.de/fosap10/uebungen/blaetter/Loesung6.pdf)
 
+```
 Gib eine Grammatik G an, die die formale Sprache L(G) = {ab^nc | n > 0} erzeugt.
+```
 
 <details>
     <summary>Lösung</summary>
@@ -1366,7 +1371,9 @@ P = {
 ### Aufgabe 4 (Internet)
 [Quelle](https://verify.rwth-aachen.de/fosap10/uebungen/blaetter/Loesung6.pdf)
 
+```
 Gib eine Grammatik G an, die die formale Sprache L(G) = {w element {a,b,c}* | #a(w) = #b(w)} erzeugt.
+```
 
 <details>
     <summary>Lösung</summary>
@@ -1389,7 +1396,9 @@ P = {
 ### Aufgabe 5 (Internet)
 [Quelle](https://www.coli.uni-saarland.de/courses/grammatikformalismen/2011/exercises/LoesungUebung1.pdf)
 
+```
 Gib eine Grammatik G an, die die formale Sprache L(G) = {a^m b c^n d^m | m,n >= 1} erzeugt.
+```
 
 <details>
     <summary>Lösung</summary>
@@ -1421,7 +1430,9 @@ P = {
 ### Aufgabe 6 (Internet)
 [Quelle](https://www.coli.uni-saarland.de/courses/grammatikformalismen/2011/exercises/LoesungUebung1.pdf)
 
+```
 Gib eine Grammatik G an, die die formale Sprache L(G) = {a^m b^n a^n b^m | m,n >= 1} erzeugt.
+```
 
 <details>
     <summary>Lösung</summary>
@@ -1456,8 +1467,10 @@ P = {
 
 [Quelle](https://www.inf.hs-flensburg.de/lang/veranst/thi/regulaer.htm)
 
+```
 Regulärer Ausdruck für Sprachen mit Alphabet A = {a,b}:
 L = {w | w fängt mit aa an oder hört mit bb auf}
+```
 
 <details>
     <summary>Lösung</summary>
@@ -1472,8 +1485,10 @@ L = {w | w fängt mit aa an oder hört mit bb auf}
 
 [Quelle](https://www.inf.hs-flensburg.de/lang/veranst/thi/regulaer.htm)
 
+```
 Regulärer Ausdruck für Sprachen mit Alphabet A = {a,b}:
 L = {w | w enthält eine gerade Anzahl von a´s}
+```
 
 <details>
     <summary>Lösung</summary>
@@ -1488,8 +1503,10 @@ L = {w | w enthält eine gerade Anzahl von a´s}
 
 [Quelle](https://www.inf.hs-flensburg.de/lang/veranst/thi/regulaer.htm)
 
+```
 Regulärer Ausdruck für Sprachen mit Alphabet A = {a,b}:
 L = {w | w enthält genau ein Vorkommen von bb}
+```
 
 <details>
     <summary>Lösung</summary>
@@ -1504,8 +1521,10 @@ noch nicht gefunden
 
 [Quelle](https://www.inf.hs-flensburg.de/lang/veranst/thi/regulaer.htm)
 
+```
 Regulärer Ausdruck für Sprachen mit Alphabet A = {a,b}:
 L = {w | w enthält mindestens zwei b´s}
+```
 
 <details>
     <summary>Lösung</summary>
@@ -1520,8 +1539,10 @@ L = {w | w enthält mindestens zwei b´s}
 
 [Quelle](https://www.inf.hs-flensburg.de/lang/veranst/thi/regulaer.htm)
 
+```
 Regulärer Ausdruck für Sprachen mit Alphabet A = {a,b}:
 L = {w | w enthält genau zwei b´s}
+```
 
 <details>
     <summary>Lösung</summary>
@@ -1536,8 +1557,10 @@ a^*ba^*ba^*
 
 [Quelle](https://www.inf.hs-flensburg.de/lang/veranst/thi/regulaer.htm)
 
+```
 Regulärer Ausdruck für Sprachen mit Alphabet A = {a,b}:
 L = {w | w endet auf höchstens ein b}
+```
 
 <details>
     <summary>Lösung</summary>
