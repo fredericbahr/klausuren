@@ -6,6 +6,10 @@
   * [1. Aufgabe (autotool)](#1-aufgabe-autotool)
   * [2. Aufgabe (ausgedacht)](#2-aufgabe-ausgedacht)
   * [3. Aufgabe (ausgedacht)](#3-aufgabe-ausgedacht)
+  * [Aufgabe 4 (autotool Bianca)](#aufgabe-4-autotool-bianca)
+    + [Aufgabe 5 (autotool Bianca)](#aufgabe-5-autotool-bianca)
+  * [Aufgabe 6 (autotool Maja)](#aufgabe-6-autotool-maja)
+  * [Aufgabe 7 (autotool unbekannt)](#aufgabe-7-autotool-unbekannt)
 - [Überladung](#uberladung)
   * [Aufgabe 1 (autotool)](#aufgabe-1-autotool)
   * [Aufgabe 2 (ausgedacht)](#aufgabe-2-ausgedacht)
@@ -118,6 +122,144 @@ in der Signatur
             )
         )
     )
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 4 (autotool Bianca)
+
+```
+Gesucht ist ein Ausdruck vom Typ Animal
+in der Signatur
+    class S {
+        static <T2> Piggy<Fozzie<Kermit, Animal>> statler (
+            Piggy <T2> x,
+            Piggy <T2> y
+        );
+        static <T2> Piggy<Kermit> waldorf (
+            T2 x,
+            Piggy<T2> y
+        );
+        static Piggy<Animal> bunsen();
+        static <T1> Animal chef (
+            Piggy<Kermit> x,
+            T1 y
+        );
+        static <T2> Fozzie<Kermit, Animal> rowl (Piggy<T2> x);
+    }
+```
+<details>
+    <summary>Lösung</summary>
+    <pre>
+S.&lt;Piggy&lt;Animal&gt;chef(
+    S.&lt;Fozzie&lt;Kermit, Animal&gt;&gt;waldorf(
+        S.&lt;Animal&gt;rowlf(S.bunsen()),
+        S.&lt;Animal&gt;statler(
+            S.bunsen(),
+            S.bunsen()
+        )
+    ),
+    S.bunsen()
+)
+    </pre>
+</details>
+
+<br>
+
+#### Aufgabe 5 (autotool Bianca)
+
+```
+Gesucht ist ein Ausdruck vom Typ Fozzie<Piggy<Animal>, Kermit>
+in der Signatur
+    class S {
+        static Piggy<Animal> statler (Animal x);
+        static <T1> Piggy<T1> waldorf (
+            Fozie<T1, Animal> x,
+            Piggy<Animal> y
+        );
+        static Animal bunsen();
+        static <T2> Fozzie<Piggy<Animal>, Kermit> chef (
+            Piggy<T2> x,
+            Piggy<Kermit> y
+        );
+        static Fozzie<Kermit, Animal> rowlf ();
+    }
+```
+<details>
+    <summary>Lösung</summary>
+    <pre>
+S.&lt;Animal&gt;chef(
+    S.statler(S.bunsen()),
+    S.&lt;Kermit&gt;waldorf(
+        S.rowlf(),
+        S.statler(S.bunsen())
+    )
+)
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 6 (autotool Maja)
+
+```
+Gesucht ist ein Ausdruck vom Typ <Fozzie<Piggy<Piggy<Piggy<Piggy<Piggy<Animal>>>>>>, Animal>
+in der Signatur
+    class S {
+        static <T1> Piggy<Animal> statler (Piggy<T1> x);
+        static <T2> Fozzie<T2, Animal> waldorf (T2 x);
+        static Fozzie<Kermit, Kermit> bunsen();
+        static <T2, T1> Piggy<Kermit> chef (Fozzie<T2, T1> x);
+        static <T1> <Piggy<Piggy<Piggy<T1>>>> rowlf (Piggy<T1> x);
+    }
+```
+<details>
+    <summary>Lösung</summary>
+    <pre>
+S.&lt;Piggy&lt;Piggy&lt;Piggy&lt;Piggy&lt;Piggy&lt;Animal&gt;&gt;&gt;&gt;&gt;&gt;waldorf(
+    S.&lt;&lt;Piggy&lt;Piggy&lt;Animal&gt;rowlf(
+        S.&lt;Animal&gt;rowlf(
+            S.&lt;Kermit&gt;statler(S.&lt;Kermit, Kermit&gt;chef(S.bunsen()))
+        )
+    )
+)
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 7 (autotool unbekannt)
+
+```
+Gesucht ist ein Ausdruck vom Typ Piggy<Fozzie<Piggy<Animal>, Kermit>>
+in der Signatur
+    class S {
+        static Kermit statler (
+            Piggy<Fozzie<Animal, Animal>> x,
+            Piggy<Piggy<Kermit>> y
+        );
+        static <T2> Piggy<Animal> waldorf (
+            Piggy<Piggy<T2>> x,
+            T2 y
+        );
+        static Piggy<Piggy<Kermit>> bunsen();
+        static Piggy<Fozzie<Animal, Animal>> chef();
+        static <T1> Piggy<Fozzie<T1, Kermit>> rowlf (T1 x);
+    }
+```
+<details>
+    <summary>Lösung</summary>
+    <pre>
+S.&lt;Piggy&lt;Animal&gt;&gt;rowlf(
+    S.&lt;Kermit&gt;waldorf(
+        S.bunsen(),
+        S.statler(
+            S.chef(),
+            S.bunsen()
+        )
+    )
+)
     </pre>
 </details>
 
