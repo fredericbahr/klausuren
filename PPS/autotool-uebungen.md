@@ -1515,7 +1515,7 @@ L = {w | w enthält genau ein Vorkommen von bb}
 <details>
     <summary>Lösung</summary>
     <pre>
-noch nicht gefunden
+(a^*(ba)^*)*bb((ab)+a)*
     </pre>
 </details>
 
@@ -1569,7 +1569,7 @@ L = {w | w endet auf höchstens ein b}
 <details>
     <summary>Lösung</summary>
     <pre>
-noch keine Lösung
+b + a^* + ((a + b)^*a(a^*+b))
     </pre>
 </details>
 
