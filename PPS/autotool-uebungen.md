@@ -375,15 +375,15 @@ applicable method declarations (cf. JLS 15.12.2) is
                                 , class D extends E
                                 , class E extends C
                                 ]
-                    , methods = [ m ( F x, D y, C z)
+                    , methods = [ m ( E x, D y, C z)
                                 , m ( F x, D y, D z)
-                                , m ( D x, F y, F z)
-                                , m ( E x, E y, C z)
-                                , m ( C x, C y, E z)
+                                , m ( C x, D y, E z)
+                                , m ( C x, C y, F z)
+                                , m ( E x, F y, C z)
                                 ]
-                    , call = m ( new E () , new E () , new E () ) 
+                    , call = m ( new E () , new D () , new D () ) 
                     }
-    , minimal = [ 3, 4] 
+    , minimal = [ 2, 0] 
     }
     </pre>
 </details>
@@ -1693,6 +1693,7 @@ Die Maschine soll diese Bedingungen erfüllen
     Push 3,
     Load,
     Mul,
+    Sub,
     Sub,
     Push 0,
     Store,
