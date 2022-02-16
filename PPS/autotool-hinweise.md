@@ -429,6 +429,13 @@ Beispiel:
 (y>=7)[y/x+3] = (x+3 >= 7) = (x >= 4)
 ```
 
+*Anmerkung:*
+Zusammengesetzte Anweisungen:
+```
+wenn {V} C {Z} und {Z} D {N}
+dann {V} C; D {N}
+```
+
 #### Axiom fuer die Simultanzuweisung
 
 `{ N[v1/e1,v2/e2] } (v1, v2) := (e1, e2) { N }`
