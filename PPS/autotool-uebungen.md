@@ -154,6 +154,41 @@ in der Signatur
 
 <br>
 
+### 4. Aufgabe (Altklausur)
+
+```
+Gesucht ist ein Ausdruck vom Typ Set<Set<Bar>>
+in der Signatur
+    class S {
+        static Map<Foo, Bar> f();
+        static <R> Set<R> g (R x);
+        static <R, S> Bar h (
+          R x,
+          Set<Set<S>> y
+        );
+    }
+```
+<details>
+    <summary>Lösung</summary>
+    <pre>
+    S.&lt;Set&lt;Bar&gt;&gt;g(
+      S.&lt;Bar&gt;g(
+        S.&lt;Map&lt;Foo, Bar&gt;, Map&lt;Foo, Bar&gt;h(
+            S.f(),
+            S.&lt;Set&lt;Map&lt;Foo, Bar&gt;&gt;&gt;g(
+                S.&lt;Map&lt;Foo,Bar&gt;&gt;g(
+                    S.f()
+                )
+            )
+        )
+      )
+   )
+    </pre>
+</details>
+
+<br>
+
+
 ### Aufgabe 4 (autotool Bianca)
 
 ```
