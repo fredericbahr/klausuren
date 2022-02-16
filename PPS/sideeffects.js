@@ -2,17 +2,17 @@ const fs = require("fs")
 const exec = require('child_process').exec;
 
 // adjust as needed
-const finalA = 1;
-const finalB = [4, 6, 1, 2, 10]
+const finalA = 0;
+const finalB = [5, 1, 6, 3]
 
 const minValue = -10;
 const maxValue = 10;
 
 // input the statements from the task
 const sideEffects = `
-a = a--;
-a ++;
-b[(b[a] += a) - 8] += (a -=--a);
+b[b[a-4]-=1]=a;
+b[b[a-4]-4]+=b[--b[0]]++;
+--b[a=(a-=a)];
 `
 
 
@@ -32,8 +32,6 @@ b[(b[a] += a) - 8] += (a -=--a);
 
 
 
-let a;
-let b = [];
 
 function arrayEquals(a, b) {
     return Array.isArray(a) &&
