@@ -1,19 +1,122 @@
-﻿# PPS - Autotool Hinweise
-# Aufgabe 41-1 (Hanoi)
+# PPS - Autotool Hinweise
 
-# Aufgabe 42-1 (Blockkommentar)
+<!-- toc -->
 
-# Aufgabe 42-2 (ungerade/regulärer Ausdruck)
-Vorlesung: [Skript]()
-Lösung: nicht vorhanden
+- [Aufgabe 42-1 (Blockkommentar)](#aufgabe-42-1-blockkommentar)
+- [Aufgabe 42-1 (regulaerer Ausdruck)](#aufgabe-42-1-regulaerer-ausdruck)
+- [Aufgabe 42-3 (Formel -> Regexp)](#aufgabe-42-3-formel---regexp)
+- [Aufgabe 43-1 (eindeutige CFG)](#aufgabe-43-1-eindeutige-cfg)
+- [Aufgabe 43-2 (CFG a ungleich b)](#aufgabe-43-2-cfg-a-ungleich-b)
+- [Aufgabe 47-1 (Nebenwirkungen)](#aufgabe-47-1-nebenwirkungen)
+- [Aufgabe 49-1 (While -> Goto)](#aufgabe-49-1-while---goto)
+- [Aufgabe 49-2 (Goto -> While)](#aufgabe-49-2-goto---while)
+- [Aufgabe 51-2 (denotationale Semantik)](#aufgabe-51-2-denotationale-semantik)
+- [Aufgabe 53-1 (Frames)](#aufgabe-53-1-frames)
+- [Aufgabe 54-1 (Überladung auflösen)](#aufgabe-54-1-uberladung-auflosen)
+- [Aufgabe 55-1 (Polymorphie)](#aufgabe-55-1-polymorphie)
+- [Theorie](#theorie)
+  * [Compiler-Schritte](#compiler-schritte)
+  * [Hoare-Kalkül](#hoare-kalkul)
+    + [Axiom fuer Zuweisung](#axiom-fuer-zuweisung)
+    + [Axiom fuer die Simultanzuweisung](#axiom-fuer-die-simultanzuweisung)
+    + [Axiom fuer logische Umformungen](#axiom-fuer-logische-umformungen)
+    + [Axiom fuer Verzweigung](#axiom-fuer-verzweigung)
+    + [Axiom fuer Schleifen](#axiom-fuer-schleifen)
 
-# Aufgabe 42-3 (Formel -> Regexp)
+<!-- tocstop -->
 
-# Aufgabe 43-1 (eindeutige CFG)
-Vorlesung: [Skript1](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(38)), [Skript2](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(42)), [Skript3](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(47))
+## Aufgabe 42-1 (Blockkommentar)
+
+**Hinweis:**
+- siehe regulärer Ausdruck
+- Substition der eigentlichen Wörter mit Buchstaben
+
+## Aufgabe 42-1 (regulaerer Ausdruck)
+Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(25)), [Grundlagen](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(21)), [weitere Literatur](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(27))
+
+Lösung: 
+```
+ab(a+c)^*b^*(c(a+c)^*b^*)^*ba
+```
+
+
+**Hinweise:**
+- siehe autotool-test
+- `a*b` bzw. `ab` &rarr; Verkettung &rarr; a und dann b
+- `a+b` &rarr; Vereinigung &rarr; a oder b
+- `^*` &rarr; Hülle &rarr; beliebig oft oder gar nicht
+
+## Aufgabe 42-3 (Formel -> Regexp)
+
+siehe Reguläre Ausdrücke 👆
+
+Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(23))
+
+Beispiel:
+
+`forall p : ((a (p) => exists q : (((p < q) && b (q)))))`
+
+&rarr; Für alle Stellen p gilt: Wenn an der Stelle ein a steht dann existiert eine Stelle q, für die gilt: die Stelle p ist vor (kleiner) der Stelle q und an der Stelle q steht ein b. 
+
 Lösung:
-# Aufgabe 43-2 (CFG a ungleich b)
+```
+((a^*c^*)^*bc^*)^*
+```
+
+**Prädikatenlogik**
+
+- Implikation
+    - Implikation &rarr; x => y &rarr; wenn x, dann y
+    - Wenn x falsch ist, ist Implikation immer wahr
+    - nur wenn x wahr ist, dann hängt Implikation von y ab
+- Konjuktion
+    - Und &rarr; x &and; y
+- Disjunktion
+    - Oder &rarr; x &or; y
+
+
+**Hinweise:**
+- es gibt Buchstaben innerhalb des Alphabetes &rarr; können in Wort vorkommen
+- es gibt Buchstaben nicht im Alphabet &rarr; Positionen im Wort
+- a (p) meint dabei eine **Position p** im Wort mit dem Buchstaben a
+- b (q) meint dabei eine **Position q** im Wort mit dem Buchstaben b
+- p < q &rarr; der Buchstabe a kommt vor dem Buchstaben b
+
+
+## Aufgabe 43-1 (eindeutige CFG)
 Vorlesung: [Skript1](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(38)), [Skript2](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(42)), [Skript3](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(47))
+
+Lösung:
+```java
+Grammatik
+    { terminale = mkSet    "ab"
+    , variablen = mkSet    "SAB"
+    , start = 'S'
+    , regeln = mkSet
+                   [ ( "S", "")
+                   , ( "S", "aBS")
+                   , ( "S", "bAS")
+                   , ( "A", "a")
+                   , ( "A", "bAA")
+                   , ( "B", "b")
+                   , ( "B", "aBB")
+                   ]
+    }
+```
+
+**Grammatiken:**
+- Terminal-Alphabet &Sigma;
+- Variablen-Alphabet V
+- Startsymbol S &isin; V
+- Regelmenge R &SubsetEqual; (&Sigma; &cup; V)* x (&Sigma; &cup; V)*
+
+**Eindeutigkeit:**
+- es existiert nur ein Ableitungsbaum
+- rand ist die Folge aller Blatt-Markierungen (von links nach rechts) &rarr; der Satz
+
+## Aufgabe 43-2 (CFG a ungleich b)
+Vorlesung: [Skript1](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(38)), [Skript2](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(42)), [Skript3](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(47))
+
 Lösung:
 ```java
 Grammatik
@@ -45,7 +148,7 @@ Vorgehensweise:
 
 
 
-# Aufgabe 47-1 (Nebenwirkungen)
+## Aufgabe 47-1 (Nebenwirkungen)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(139))
 Lösung: 
 ``` java
@@ -61,11 +164,12 @@ Vorgehensweise:
 	 5. Anfangsbelegungen anpassen
 
 **Hinweis:**
+- Siehe autotool-test (Skript zum automatischen Lösen)
 - [JavaScript-Online-Editor](https://replit.com/languages/nodejs)
 - [Java-Online-Editor](https://www.mycompiler.io/new/java)
 
 
-# Aufgabe 49-1 (While -> Goto)
+## Aufgabe 49-1 (While -> Goto)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(182))
 Lösung: 
 ```c
@@ -110,7 +214,7 @@ end: 		skip;
 ```
 - wichtig sind die umschießenden Klammern ( **{ }** )
 
-# Aufgabe 49-2 (Goto -> While)
+## Aufgabe 49-2 (Goto -> While)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(182))
 Lösung:
 ```javascript
@@ -145,7 +249,7 @@ end: 		skip;
 - Steuerung der while-Schleife mithilfe von **Variablen** &rarr; i := true
 - Keine Variablen zusätzlich verwenden wenn diese nicht benötigt werden &rarr; Fehler
 - Wichtig sind die umschließenden Klammern ( **{ }** )
-# Aufgabe 51-2 (denotationale Semantik)
+## Aufgabe 51-2 (denotationale Semantik)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(193)), [weiterführende Literatur](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(192))
 Lösung:
 - keine Lösung gefunden
@@ -158,7 +262,7 @@ Herangehensweise:
 **Hinweis:**
 - Vermutlich nicht prüfungsrelevant!
 
-# Aufgabe 53-1 (Frames)
+## Aufgabe 53-1 (Frames)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(210))
 Lösung:
 ```javascript
@@ -192,7 +296,7 @@ Vorgehensweise:
 - Funktionen können Parameter haben
 - zurückgegebene Funktion kann beispielsweise so aufgrufen werden: `f()()`
 
-# Aufgabe 54-1 (Überladung auflösen)
+## Aufgabe 54-1 (Überladung auflösen)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(235)), [weiterführende Literatur](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(233))
 Lösung:
 ```javascript
@@ -256,7 +360,7 @@ Vorgehensweise:
 	-  Distanz für dritten Parameter &rarr; -1 + -1 + -1 &rarr; **-3**
 	-  Gesamtdistanz &rarr; -2 + 0 + -3 &rarr; **-5**
 
-# Aufgabe 55-1 (Polymorphie)
+## Aufgabe 55-1 (Polymorphie)
 Vorlesung: [Skript](https://www.imn.htwk-leipzig.de/~waldmann/edu/ws21/pps/folien/#(245))
 
 Lösung:
@@ -287,3 +391,79 @@ Vorgehensweise:
 	 7. Welche weiteren Parameter muss ich berücksichtigen
 
 **Hinweis:** Wichtig sind die expliziten **Typangaben** bei Funktionen, die einen generischen Typ erwarten. Syntax: `ClassName.<Type>methodName`
+
+## Aufgabe 41-3 (JVM/Kellermaschine)
+
+* Push &lt;Zahl&gt; &rarr; packt die Zahl auf den Stak
+* Load &rarr; lädt die Variable am zuvor gepushten Index
+* Add &rarr; addiert die obersten zwei Werte auf dem Stack, speichert Ergebnis oben auf Stack &rarr; [2,3] Add [5]
+* Mul &rarr; multipliziert die obersten zwei Werte auf dem Stack, speichert Ergenis oben auf Stack &rarr; [2,3,5] Mul [6,5]
+* Sub &rarr; subtrahiert die obersten zwei Werten auf folgende Weise: [1,2] Sub (x2-x1) [1]
+* Abschluss &rarr; Push 0, Store, Halt &rarr; speicher Ergebnis in Variable am Index 0 (y)
+
+
+## Theorie
+
+### Compiler-Schritte
+1. Frontend/Analysephase
+    1. Lexikalische Analyse &rarr; Tokens
+    2. Syntaktische Analyse &rarr; Syntaxbaum/AST
+    3. Semantische Analyse &rarr; dekorierter/attributierter Syntaxbaum/AST
+2. Backend/Synthesephase
+    1. Zwischencodeerzeugung &rarr; Zwischencode/Austauschformat (maschinennahe)
+    2. Codeoptimierung &rarr; Programmoptimierungne auf Zwischencode/Maschinencode
+    3. Codegenerierung &rarr; Maschinencode/Code in Zielsprache
+
+### Hoare-Kalkül
+
+#### Axiom fuer Zuweisung
+
+`{ N[x/E] } x := E { N }`
+
+N[x/E] ist der Ausdruck N, wobei jedes Vorkommen des Namens x durch den Ausdruck E ersetzt wird
+
+Beispiel:
+
+```
+{ ... } y := x+3 { y >= 7}
+(y>=7)[y/x+3] = (x+3 >= 7) = (x >= 4)
+```
+
+*Anmerkung:*
+Zusammengesetzte Anweisungen:
+```
+wenn {V} C {Z} und {Z} D {N}
+dann {V} C; D {N}
+```
+
+#### Axiom fuer die Simultanzuweisung
+
+`{ N[v1/e1,v2/e2] } (v1, v2) := (e1, e2) { N }`
+
+Ähnlich wie bei [Axiom für Zuweisung](#axiom-fuer-die-simultanzuweisung) nur simultanes Ersetzen der beiden Namen
+
+Beispiel:
+```
+{ ... } (a,b) := (b,a) { a=2 und b=5}
+{a=2 und b=5}[a/b, b/a] = {b=2 und a=5}
+
+{ ... } (x,y) := (x+y, y-x) {x=7 und y>=3}
+{x=7 und y>=3}[x/x+y,y/y-x] = {x+y=7 und y-x=>3}
+```
+
+#### Axiom fuer logische Umformungen
+
+`wenn {V} A {N} und V' => V und N => N' dann {V'} A {N'}`
+
+* Verschärfen einer Vorbedingungen (von V zu V')
+* Abschwächen einer Nachbedingungen (von N zu N')
+
+#### Axiom fuer Verzweigung
+
+`wenn { V und B } C { N } und { V und not B } D { N } dann { V } if (B) then C else D { N }`
+
+#### Axiom fuer Schleifen
+
+`wenn { I and B } A { I }, dann { I } while (B) do A { I and not B }`
+
+Arbeiten mit Invariante

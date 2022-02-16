@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>autotool-test</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#testdateien-und-testfälle-für-online-compiler">Testdateien und Testfälle für Online-Compiler</a></li>
+<li><a href="#reguläre-ausdrücke-regexp">Reguläre Ausdrücke (Regexp)</a></li>
+<li><a href="#kontextfreie-grammatiken">Kontextfreie Grammatiken</a>
+<ul>
+<li><a href="#frames">Frames</a></li>
+</ul>
+</li>
+<li><a href="#nebenwirkungen">Nebenwirkungen</a></li>
+<li><a href="#überladung">Überladung</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="testdateien-und-testfälle-für-online-compiler">Testdateien und Testfälle für Online-Compiler</h1>
+<h1 id="reguläre-ausdrücke-regexp">Reguläre Ausdrücke (Regexp)</h1>
+<p>Tools: <a href="https://regex101.com/">Regex101d</a></p>
+<p><strong>Hinweise:</strong></p>
+<ul>
+<li>Syntax ist etwas verschieden</li>
+<li>Hülle: ^* → *</li>
+<li>Gruppe: () → (?:) → non-capturing group</li>
+</ul>
+<p><strong>Ergebnisse:</strong></p>
+<ul>
+<li>alle Wörter mit gerade vielen a und beliebig vielen b?</li>
+<li><code>(b^*(ab^*b)^*b^*)^*</code>  → autotool</li>
+<li><code>(?:b*(?:ab*a)*b*)*</code>  → regex101</li>
+</ul>
+<h1 id="kontextfreie-grammatiken">Kontextfreie Grammatiken</h1>
+<p>Tools: <a href="https://web.stanford.edu/class/archive/cs/cs103/cs103.1156/tools/cfg/">Tool</a></p>
+<h2 id="frames">Frames</h2>
+<p>Visualisierungstools: <a href="https://pythontutor.com/visualize.html#mode=display">Tool1</a>, <a href="http://latentflip.com/loupe">Tool2</a></p>
+<h1 id="nebenwirkungen">Nebenwirkungen</h1>
+<p>Benutze das JS-Programm <em>sideeffects.js</em> und passe die Eingabeparameter entsprechend an.</p>
+<p>Source-Code: <a href="https://stackblitz.com/edit/node-t5f4ok">Code</a></p>
+<p><strong>Achtung:</strong></p>
+<ul>
+<li>Funktioniert nur mit <em>Node-Version: 16.13.9</em></li>
+<li>Funkitoniert nur lokal</li>
+<li>Bei mehreren Ausgaben darauf achten, dass das resultierende Array keine NaN´s oder objekte enthält!</li>
+</ul>
+<h1 id="überladung">Überladung</h1>
+<p>Online-Compiler: <a href="https://www.mycompiler.io/new/java">Java-Compiler</a></p>
+<p>Testdatei:</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">import</span>  java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+<span class="token keyword">import</span>  java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+<span class="token keyword">import</span>  java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+  
+<span class="token comment">// The main method must be in a class named "Main".</span>
+<span class="token keyword">class</span>  <span class="token class-name">Main</span> <span class="token punctuation">{</span>
+	<span class="token keyword">public</span>  <span class="token keyword">static</span>  <span class="token keyword">void</span>  <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		Test<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token keyword">new</span>  <span class="token class-name">_</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token keyword">new</span>  <span class="token class-name">_</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token keyword">new</span>  <span class="token class-name">_</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span>  <span class="token class-name">C</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">class</span>  <span class="token class-name">D</span>  <span class="token keyword">extends</span> <span class="token class-name">_</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">class</span>  <span class="token class-name">E</span>  <span class="token keyword">extends</span> <span class="token class-name">_</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">class</span>  <span class="token class-name">F</span>  <span class="token keyword">extends</span> <span class="token class-name">_</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword">class</span>  <span class="token class-name">Test</span> <span class="token punctuation">{</span>
+	<span class="token keyword">static</span>  <span class="token keyword">void</span>  <span class="token function">test</span><span class="token punctuation">(</span>_  x<span class="token punctuation">,</span>  _  y<span class="token punctuation">,</span>  _  z  <span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+	<span class="token keyword">static</span>  <span class="token keyword">void</span>  <span class="token function">test</span><span class="token punctuation">(</span>_  x<span class="token punctuation">,</span>  _  y<span class="token punctuation">,</span>  _  z  <span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+	<span class="token keyword">static</span>  <span class="token keyword">void</span>  <span class="token function">test</span><span class="token punctuation">(</span>_  x<span class="token punctuation">,</span>  _  y<span class="token punctuation">,</span>  _  z  <span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+	<span class="token keyword">static</span>  <span class="token keyword">void</span>  <span class="token function">test</span><span class="token punctuation">(</span>_  x<span class="token punctuation">,</span>  _  y<span class="token punctuation">,</span>  _  z  <span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+	<span class="token keyword">static</span>  <span class="token keyword">void</span>  <span class="token function">test</span><span class="token punctuation">(</span>_  x<span class="token punctuation">,</span>  _  y<span class="token punctuation">,</span>  _  z  <span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+
+    </div>
+  </div>
+</body>
+
+</html>
