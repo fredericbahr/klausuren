@@ -48,10 +48,15 @@
   * [Aufgabe 4 (Internet)](#aufgabe-4-internet-1)
   * [Aufgabe 5 (Internet)](#aufgabe-5-internet-1)
   * [Aufgabe 6 (Internet)](#aufgabe-6-internet-1)
+  * [Aufgabe 7 (ausgedacht, Formel)](#aufgabe-7-ausgedacht-formel)
+  * [Aufgabe 7 (ausgedacht, Formel)](#aufgabe-7-ausgedacht-formel-1)
 - [JVM/Kellermaschine](#jvmkellermaschine)
   * [Aufgabe 1 (autotool Bianca)](#aufgabe-1-autotool-bianca)
   * [Aufgabe 2 (ausgedacht)](#aufgabe-2-ausgedacht-3)
   * [Aufgabe 3 (ausgedacht)](#aufgabe-3-ausgedacht-5)
+- [Hoare-Kalkül](#hoare-kalkul)
+  * [Aufgabe 1 {Internet}](#aufgabe-1-internet)
+  * [Aufgabe 2 {Internet}](#aufgabe-2-internet)
 
 <!-- tocstop -->
 
@@ -1575,6 +1580,49 @@ b + a^* + ((a + b)^*a(a^*+b))
 
 <br>
 
+### Aufgabe 7 (ausgedacht, Formel)
+
+```
+Regex für Formel:
+forall p: (a(p) => exists q: ((q = p-1) && b(q)))
+```
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+Formel besagt:
+Für alle Stellen p gilt, wenn an der Stelle p ein a steht, dann exisiteirt eine Stelle q, die direkt vor p ist und an dieser ein b steht.
+&rarr;
+Vor jedem a muss ein b stehen.
+
+(ba + b)^*
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 7 (ausgedacht, Formel)
+
+```
+Regex für Formel:
+forall p: (b(p) => exists q: ( ((q = p-2) && a(q)) || ((q = p-3) && a(q)) ))
+```
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+Formel besagt:
+Für alle Stellen p gilt, wenn an der Stelle p ein b steht, dann existiert eine Stelle q, die entweder zwei oder vier vor p ist und an der ein a steht.
+&rarr;
+Zwei oder vier Stellen vor einem b steht ein a
+
+(a+aabbb+aabb+aaab+aab)^* &rarr; theoretisch richtig, praktisch falsch
+
+    </pre>
+</details>
+
+<br>
+
 ## JVM/Kellermaschine
 
 ### Aufgabe 1 (autotool Bianca)
@@ -1696,6 +1744,59 @@ Die Maschine soll diese Bedingungen erfüllen
     Store,
     Halt
 ]
+    </pre>
+</details>
+
+<br>
+
+## Hoare-Kalkül
+
+### Aufgabe 1 {Internet}
+
+[Quelle](https://www.pst.ifi.lmu.de/Lehre/SS03/infoII/Materialien/Folien/folien4a_2.pdf)
+
+```
+Beweise: {x>1} x := x+1; y := x; {y>2 & x>2}
+```
+<details>
+    <summary>Lösung</summary>
+    <pre>
+Vorbedingung für zweite Zuweisung:
+{...} y := x {y>2 & x>2}
+{y>2 & x>2}[y/x] = {x>2 & x>2} = {x>2}
+<br>
+Vorbedingung für erste Zuweisung:
+{...} x := x+1 {x>2}
+{x>2}[x/x+1] = {x+1>2} = {x>1}
+<br>
+&rarr; Behauptung stimmt
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 2 {Internet}
+
+[Quelle](http://gbi.ira.uka.de/aufgaben/blatt-08-loesungen.pdf)
+
+```
+Ermittel die Vorbedingung für:
+{...} x := x+y; x := x*x; x := x-y; {x=a & y=b}
+```
+<details>
+    <summary>Lösung</summary>
+    <pre>
+Vorbedingung für dritte Zuweisung:
+{...} x := x-y {x=a & y=b}
+{x=a & y=b}[x/x-y] = {x-y=a & y=b}
+<br>
+Vorbedingung für zweite Zuweisung:
+{...} x := x*x {x-y=a & y=b}
+{x-y=a & y=b}[x/x*x] = {x*x-y=a & y=b}
+<br>
+Vorbedingung für erste Zuweisung:
+{...} x := x+y {x*x-y=a & y=b}
+{x*x-y=a & y=b}[x/x+y] = {{(x+y)*(x+y)-y=a & y=b}} = {x^2+y^2+2xy-y=a & y=b}
     </pre>
 </details>
 
