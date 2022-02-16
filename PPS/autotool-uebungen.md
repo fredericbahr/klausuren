@@ -6,8 +6,9 @@
   * [1. Aufgabe (autotool)](#1-aufgabe-autotool)
   * [2. Aufgabe (ausgedacht)](#2-aufgabe-ausgedacht)
   * [3. Aufgabe (ausgedacht)](#3-aufgabe-ausgedacht)
+  * [4. Aufgabe (Altklausur)](#4-aufgabe-altklausur)
   * [Aufgabe 4 (autotool Bianca)](#aufgabe-4-autotool-bianca)
-    + [Aufgabe 5 (autotool Bianca)](#aufgabe-5-autotool-bianca)
+  * [Aufgabe 5 (autotool Bianca)](#aufgabe-5-autotool-bianca)
   * [Aufgabe 6 (autotool Maja)](#aufgabe-6-autotool-maja)
   * [Aufgabe 7 (autotool unbekannt)](#aufgabe-7-autotool-unbekannt)
 - [Überladung](#uberladung)
@@ -54,9 +55,11 @@
   * [Aufgabe 1 (autotool Bianca)](#aufgabe-1-autotool-bianca)
   * [Aufgabe 2 (ausgedacht)](#aufgabe-2-ausgedacht-3)
   * [Aufgabe 3 (ausgedacht)](#aufgabe-3-ausgedacht-5)
+  * [Aufgabe 4 (ausgedacht)](#aufgabe-4-ausgedacht-2)
 - [Hoare-Kalkül](#hoare-kalkul)
-  * [Aufgabe 1 {Internet}](#aufgabe-1-internet)
-  * [Aufgabe 2 {Internet}](#aufgabe-2-internet)
+  * [Aufgabe 1 (Internet)](#aufgabe-1-internet-2)
+  * [Aufgabe 2 (Internet)](#aufgabe-2-internet-2)
+  * [Aufgabe 3 (ausgedacht)](#aufgabe-3-ausgedacht-6)
 
 <!-- tocstop -->
 
@@ -229,7 +232,7 @@ S.&lt;Piggy&lt;Animal&gt;chef(
 
 <br>
 
-#### Aufgabe 5 (autotool Bianca)
+### Aufgabe 5 (autotool Bianca)
 
 ```
 Gesucht ist ein Ausdruck vom Typ Fozzie<Piggy<Animal>, Kermit>
@@ -1785,9 +1788,54 @@ Die Maschine soll diese Bedingungen erfüllen
 
 <br>
 
+### Aufgabe 4 (ausgedacht)
+
+```
+Konstruieren Sie eine Maschine,
+die die Funktion
+  \ [ x1, x2, x3] -> (((9*x1 + 2*x2) * 3) - 5*x1) + x3
+berechnet!
+Die Maschine soll diese Bedingungen erfüllen
+    Builtins
+        (mkSet
+            [ Add, Sub, Mul])
+```
+
+<details>
+    <summary>Lösung</summary>
+    <pre>
+[
+    Push 9,
+    Push 1,
+    Load,
+    Mul,
+    Push 2,
+    Push 2,
+    Load,
+    Mul,
+    Add,
+    Push 3,
+    Mul,
+    Push 5,
+    Push 1,
+    Load
+    Mul,
+    Sub,
+    Push 3,
+    Load,
+    Add,
+    Push 0,
+    Store,
+    Halt
+]
+    </pre>
+</details>
+
+<br>
+
 ## Hoare-Kalkül
 
-### Aufgabe 1 {Internet}
+### Aufgabe 1 (Internet)
 
 [Quelle](https://www.pst.ifi.lmu.de/Lehre/SS03/infoII/Materialien/Folien/folien4a_2.pdf)
 
@@ -1811,7 +1859,7 @@ Vorbedingung für erste Zuweisung:
 
 <br>
 
-### Aufgabe 2 {Internet}
+### Aufgabe 2 (Internet)
 
 [Quelle](http://gbi.ira.uka.de/aufgaben/blatt-08-loesungen.pdf)
 
@@ -1833,6 +1881,38 @@ Vorbedingung für zweite Zuweisung:
 Vorbedingung für erste Zuweisung:
 {...} x := x+y {x*x-y=a & y=b}
 {x*x-y=a & y=b}[x/x+y] = {{(x+y)*(x+y)-y=a & y=b}} = {x^2+y^2+2xy-y=a & y=b}
+    </pre>
+</details>
+
+<br>
+
+### Aufgabe 3 (ausgedacht)
+
+```
+Ermittle die Vorbedingung
+{...} x := x+3; y := y-3; x := x*y; y := x-y; {x<5 & y>5}
+```
+<details>
+    <summary>Lösung</summary>
+    <pre>
+Vorbedingung für vierte Zuweisung:
+{...} y := x-y {x<5 & y>5}
+{x<5 & y>5}[y/x-y] = 
+<br>
+Vorbedingung für dritte Zuweisung:
+{...} x := x*y {x<5 & x-y>5}
+{x<5 & x-y>5}[x/x*y] = {x*y<5 & x*y-y>5}
+<br>
+Vorbedingung für zweite Zuweisung:
+{...} y := y-3 {x*y<5 & x*y-y>5}
+{x*y<5 & x*y-y>5}[y/y-3] = {x*(y-3)<5 & x*(y-3)-(y-3)>5}
+<br>
+Vorbedingung für erste Zuweisung:
+{...} x := x+3 {x*(y-3)<5 & x*(y-3)-(y-3)>5}
+{x*(y-3)<5 & x*(y-3)-(y-3)>5}[x/x+3] = {(x+3)*(y-3)<5 & (x+3)*(y-3)-(y-3)>5}
+<br>
+Vereinfachen:
+{(x+3)*(y-3)<5 & (x+3)*(y-3)-(y-3)>5} = {xy-3x+3y-9<5 & xy-3x+3y-9-y+3>5} = {xy-3x+3y<14 & xy-3x+2y>11} 
     </pre>
 </details>
 
