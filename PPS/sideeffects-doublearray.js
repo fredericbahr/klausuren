@@ -28,10 +28,12 @@ for (let idx0 = -10; idx0 <= 10; idx0++) {
         arr = sideEffects(arr);
 
         if (checkArrayEqual(finalArray, arr)) {
-          console.log([
+          console.log("starting array: ", [
             [idx0, idx1],
             [idx2, idx3],
           ]);
+          console.log("resulting array for checks: ", arr);
+          console.log()
         }
       }
     }
